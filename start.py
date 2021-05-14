@@ -1,3 +1,4 @@
+# imports
 from tkinter.ttk import * 
 from tkinter import *
 
@@ -6,9 +7,11 @@ class Start_window:
     def __init__(self):
         # create frame
         self.root = Tk()
-        self.root.geometry("900x700")
+        self.root.geometry("900x700") # set frame size
         self.root.title("Mastermind - Start") # set frame title
-        self.root.iconbitmap('img/icon.ico')
+        self.root.iconbitmap('img/icon.ico') # set frame icon
+        
+        # set weight of rows and columns
         self.root.grid_rowconfigure(5, weight=1)
         self.root.grid_columnconfigure(0, weight=3)
         self.root.grid_columnconfigure(1, weight=1)
@@ -56,11 +59,13 @@ class Start_window:
         # show everything
         self.root.mainloop()
 
-    def play(self): # new window definition
-        play_window = Toplevel(self.root)
-        play_window.title('Mastermind - Play')
-        play_window.iconbitmap('img/icon.ico')
-        play_window.geometry("900x700") 
-        self.play_bt.config(state="disabled")
+    # function to generate new window
+    def play(self): 
+        play_window = Toplevel(self.root) # create new window
+        play_window.title('Mastermind - Play') # set title of new window
+        play_window.iconbitmap('img/icon.ico') # set icon of new window
+        play_window.geometry("900x700") # set size of new window
+        self.play_bt.config(state="disabled") # set state of play button to "disabled" after button is clicked
 
+# create new start window
 mc = Start_window()
