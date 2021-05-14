@@ -68,4 +68,4 @@ class Start_window:
         self.play_bt.config(state="disabled") # set state of play button to "disabled" after button is clicked
 
 # create new start window
-mc = Start_window()
+start = Start_window()
