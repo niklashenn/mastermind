@@ -1,7 +1,7 @@
 from tkinter.ttk import *
 from tkinter import *
 
-class MiniCalculator:
+class Start_GUI:
     def __init__(self):
         # create frame
         self.root = Tk()
@@ -22,17 +22,17 @@ class MiniCalculator:
         self.gamemode_lb.grid(row = 1, column = 0, padx=5, sticky='nwse')
 
         # create radio button for PvC
-        self.player_vs_computer_rb = Radiobutton(self.root, text="Player vs Computer", padx = 50, value=0)
+        self.player_vs_computer_rb = Radiobutton(self.root, text="Player vs Computer", padx = 50, value="PvC")
         self.player_vs_computer_rb.deselect()
         self.player_vs_computer_rb.grid(row = 2, column = 0, padx=5, sticky='nwse')
 
         # create radio button for PvP
-        self.player_vs_player_rb = Radiobutton(self.root, text="Player vs Player", padx = 50, value=1)
+        self.player_vs_player_rb = Radiobutton(self.root, text="Player vs Player", padx = 50, value="PvP")
         self.player_vs_player_rb.deselect()
         self.player_vs_player_rb.grid(row = 3, column = 0, padx=5, sticky='nwse')
 
         # create radio button for CvP
-        self.computer_vs_player_rb = Radiobutton(self.root, text="Computer vs Player", padx = 50, value=2)
+        self.computer_vs_player_rb = Radiobutton(self.root, text="Computer vs Player", padx = 50, value="CvP")
         self.computer_vs_player_rb.deselect()
         self.computer_vs_player_rb.grid(row = 4, column = 0, padx=5, sticky='nwse')
 
@@ -55,4 +55,4 @@ class MiniCalculator:
         # show everything
         self.root.mainloop()
         
-mc = MiniCalculator()
+mc = Start_GUI()
