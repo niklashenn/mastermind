@@ -1,12 +1,13 @@
-from tkinter.ttk import *
+from tkinter.ttk import * 
 from tkinter import *
 
-class Start_GUI:
+class Start_window:
+
     def __init__(self):
         # create frame
         self.root = Tk()
         self.root.geometry("900x700")
-        self.root.title("Mastermind") # set frame title
+        self.root.title("Mastermind - Start") # set frame title
         self.root.iconbitmap('img/icon.ico')
         self.root.grid_rowconfigure(5, weight=1)
         self.root.grid_columnconfigure(0, weight=3)
@@ -49,10 +50,17 @@ class Start_GUI:
         #self.exit_bt.pack(side=RIGHT)
 
         # create play button
-        self.play_bt = Button(self.root, text = "Play", font=("Fixedsys", 14), width = 15, height=5, bg="lightgreen")
+        self.play_bt = Button(self.root, text = "Play", font=("Fixedsys", 14), width = 15, height=5, bg="lightgreen", command=self.play)
         self.play_bt.grid(row = 5, column = 1, pady = 5, sticky='s')
-        
+
         # show everything
         self.root.mainloop()
-        
-mc = Start_GUI()
+
+    def play(self): # new window definition
+        play_window = Toplevel(self.root)
+        play_window.title('Mastermind - Play')
+        play_window.iconbitmap('img/icon.ico')
+        play_window.geometry("900x700") 
+        self.play_bt.config(state="disabled")
+
+mc = Start_window()
