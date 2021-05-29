@@ -1,84 +1,91 @@
 
-"""# imports
+# imports
 from tkinter.ttk import * 
 from tkinter import *
 
 class Start_window:
+    
 
     def __init__(self):
         # create frame
-        self = Tk()
-        self.geometry("400x700") # set frame size
-        self.title("Mastermind - Start") # set frame title
-        self.iconbitmap('img/icon.ico') # set frame icon
+        #####################################################################
+        windowid = 0
+        def changewindow(id):
+            print("123")
+            windowid=id
         
-        # set weight of rows and columns
-        self.grid_rowconfigure(8, weight=1)
-        self.grid_columnconfigure(0, weight=1)
         
-        # create title label
-        self.title_lb = Label(self, text = "Mastermind", width = 20, font=("Fixedsys", 40))
-        self.title_lb.grid(row = 0, column = 0, pady = 10, sticky='nwse')
-
-        # create gameart label
-        self.gamemode_lb = Label(self, text = "Gamemode", width = 20, font=("Fixedsys", 17))
-        self.gamemode_lb.grid(row = 1, column = 0, padx=5, sticky='nwse')
-
-        # create radio button for PvC
-        var = IntVar()
-        self.player_vs_computer_rb = Radiobutton(self, text="Player vs Computer", padx = 50, variable=var, value="PvC")
-        self.player_vs_computer_rb.deselect()
-        self.player_vs_computer_rb.grid(row = 2, column = 0, padx=5, sticky='nwse')
-
-        # create radio button for PvP
-        self.player_vs_player_rb = Radiobutton(self, text="Player vs Player", padx = 50, variable=var, value="PvP")
-        self.player_vs_player_rb.deselect()
-        self.player_vs_player_rb.grid(row = 3, column = 0, padx=5, sticky='nwse')
-
-        # create radio button for CvP
-        self.computer_vs_player_rb = Radiobutton(self, text="Computer vs Player", padx = 50, variable=var, value="CvP")
-        self.computer_vs_player_rb.deselect()
-        self.computer_vs_player_rb.grid(row = 4, column = 0, padx=5, sticky='nwse')
-
-        # create options label
-        self.options_lb = Label(self, text = "", width = 1, font=("Fixedsys", 17))
-        self.options_lb.grid(row = 5, column = 0, padx=1, sticky='nwse',pady=50)
-
-        # create options label
-        self.options_lb = Label(self, text = "Options", width = 1, font=("Fixedsys", 17))
-        self.options_lb.grid(row = 6, column = 0, padx=1, sticky='nwse')
+        if(windowid==0):
+            self = Tk()
+            self.geometry("400x700") # set frame size
+            self.title("Mastermind - Start") # set frame title
+            self.iconbitmap('img/icon.ico') # set frame icon
+         
+            # set weight of rows and columns
+            self.grid_rowconfigure(8, weight=1)
+            self.grid_columnconfigure(0, weight=1)
         
-        # create optionmenu for moves
-        self.moves_cb = Combobox(self, values=['1', '2', '3', '4', '5', '6'])
-        self.moves_cb.grid(row=7, column=0, padx=5, pady = 5)
+            # create title label
+            self.title_lb = Label(self, text = "Mastermind", width = 20, font=("Fixedsys", 40))
+            self.title_lb.grid(row = 0, column = 0, pady = 10, sticky='nwse')
 
-        # create exit button
-        self.exit_bt = Button(self, text = "Exit", width = 6, command = self.destroy)
-        #self.exit_bt.pack(side=RIGHT)
+            # create gameart label
+            self.gamemode_lb = Label(self, text = "Gamemode", width = 20, font=("Fixedsys", 17))
+            self.gamemode_lb.grid(row = 1, column = 0, padx=5, sticky='nwse')
 
-        # create play button
-        self.play_bt = Button(self, text = "Play", font=("Fixedsys", 14), width = 15, height=5, bg="lightgreen", command=self.play)
-        self.play_bt.grid(row = 8, column = 0, pady = 5, sticky='s')
+            # create radio button for PvC
+            var = IntVar()
+            self.player_vs_computer_rb = Radiobutton(self, text="Player vs Computer", padx = 50, variable=var, value="PvC")
+            self.player_vs_computer_rb.deselect()
+            self.player_vs_computer_rb.grid(row = 2, column = 0, padx=5, sticky='nwse')
 
+            # create radio button for PvP
+            self.player_vs_player_rb = Radiobutton(self, text="Player vs Player", padx = 50, variable=var, value="PvP")
+            self.player_vs_player_rb.deselect()
+            self.player_vs_player_rb.grid(row = 3, column = 0, padx=5, sticky='nwse')
+
+            # create radio button for CvP
+            self.computer_vs_player_rb = Radiobutton(self, text="Computer vs Player", padx = 50, variable=var, value="CvP")
+            self.computer_vs_player_rb.deselect()
+            self.computer_vs_player_rb.grid(row = 4, column = 0, padx=5, sticky='nwse')
+
+            # create options label
+            self.options_lb = Label(self, text = "", width = 1, font=("Fixedsys", 17))
+            self.options_lb.grid(row = 5, column = 0, padx=1, sticky='nwse',pady=50)
+
+            # create options label
+            self.options_lb = Label(self, text = "Options", width = 1, font=("Fixedsys", 17))
+            self.options_lb.grid(row = 6, column = 0, padx=1, sticky='nwse')
+            
+            # create optionmenu for moves
+            self.moves_cb = Combobox(self, values=['1', '2', '3', '4', '5', '6'])
+            self.moves_cb.grid(row=7, column=0, padx=5, pady = 5)
+
+            # create exit button
+            self.exit_bt = Button(self, text = "Exit", width = 6, command = self.destroy)
+            #self.exit_bt.pack(side=RIGHT)
+
+            # create play button
+            self.play_bt = Button(self, text = "Play", font=("Fixedsys", 14), width = 15, height=5, bg="lightgreen", command=changewindow(1))
+            self.play_bt.grid(row = 8, column = 0, pady = 5, sticky='s')
+
+        if(windowid==1):
+            print("u752905723")
+            self = Tk()
+            self.geometry("800x700") # set frame size
+            self.title("Mastermind - Start") # set frame title
+            self.iconbitmap('img/icon.ico') # set frame icon
+
+        
+        #############################################################################################
         # show everything
         self.mainloop()
-
-    # function to generate new window
-    def play(self): 
-        play_window = Toplevel(self) # create new window
-        play_window.title('Mastermind - Play') # set title of new window
-        play_window.iconbitmap('img/icon.ico') # set icon of new window
-        play_window.geometry("900x700") # set size of new window
-        self.play_bt.config(state="disabled") # set state of play button to "disabled" after button is clicked
-
-        # create play button
-        self.play_bt1 = Button(self, text = "Play", font=("Fixedsys", 14), width = 15, height=5, bg="lightgreen", command=self.__init__)
-        self.play_bt1.grid(row = 8, column = 0, pady = 5, sticky='s') 
-
+        
+        
 # create new start window
-start = Start_window() """
+start = Start_window()
 
-import tkinter as tk
+"""import tkinter as tk
 from tkinter.constants import CURRENT
 from tkinter.ttk import * 
 import random
@@ -100,7 +107,7 @@ class SeaofBTCapp(tk.Tk):
 
         self.frames = {}
 
-        for F in (StartPage, PageOne, PageTwo):
+        for F in (StartPage, PageOne, PageTwo, PageThree):
 
             frame = F(container, self)
 
@@ -111,9 +118,21 @@ class SeaofBTCapp(tk.Tk):
         self.show_frame(StartPage)
 
     def show_frame(self, cont):
+        container = tk.Frame(self)
 
+        container.pack(side="top", fill="both", expand = True)
+
+        container.grid_rowconfigure(0, weight=1)
+        container.grid_columnconfigure(0, weight=1)
+        for F in (StartPage, PageOne, PageTwo, PageThree):
+
+            frame = F(container, self)
+
+            self.frames[F] = frame
+
+            frame.grid(row=0, column=0, sticky="nsew")
+        
         frame = self.frames[cont]
-        frame.tkraise()
 
         
 class StartPage(tk.Frame):
@@ -180,10 +199,11 @@ class StartPage(tk.Frame):
                 vari=moves_cb.get()
                 btcvp.invoke()
         
+        #def moves_cb_value():
+            #return moves_cb.get()
 
         play_bt = tk.Button(self, text = "Play", font=("Fixedsys", 14), width = 15, height=5, bg="lightgreen", command=choice)
         play_bt.grid(row = 8, column = 0, pady = 5, sticky='s')
-
 
 
 class PageOne(tk.Frame):
@@ -235,4 +255,4 @@ class Helper():
 
 
 app = SeaofBTCapp()
-app.mainloop()
+app.mainloop()"""
