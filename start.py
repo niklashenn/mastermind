@@ -4,23 +4,28 @@ from tkinter.ttk import *
 from tkinter import *
 
 class Start_window:
-    
+    windowid=0
 
     def __init__(self):
         # create frame
+        
         #####################################################################
-        windowid = 0
+        self = Tk()
+        self.title("Mastermind - Start") # set frame title
+        self.iconbitmap('img/icon.ico') # set frame icon
+
+        def clear_frame():
+            for widgets in self.winfo_children():
+                widgets.destroy()
+
         def changewindow(id):
-            print("123")
-            windowid=id
+            clear_frame()
+            if(id==1):
+                window1()
         
-        
-        if(windowid==0):
-            self = Tk()
+        ##########################################################################################################################################################################################
+        def window0():
             self.geometry("400x700") # set frame size
-            self.title("Mastermind - Start") # set frame title
-            self.iconbitmap('img/icon.ico') # set frame icon
-         
             # set weight of rows and columns
             self.grid_rowconfigure(8, weight=1)
             self.grid_columnconfigure(0, weight=1)
@@ -66,19 +71,20 @@ class Start_window:
             #self.exit_bt.pack(side=RIGHT)
 
             # create play button
-            self.play_bt = Button(self, text = "Play", font=("Fixedsys", 14), width = 15, height=5, bg="lightgreen", command=changewindow(1))
+            self.play_bt = Button(self, text = "Play", font=("Fixedsys", 14), width = 15, height=5, bg="lightgreen", command=lambda :changewindow(1))
             self.play_bt.grid(row = 8, column = 0, pady = 5, sticky='s')
 
-        if(windowid==1):
-            print("u752905723")
-            self = Tk()
-            self.geometry("800x700") # set frame size
-            self.title("Mastermind - Start") # set frame title
-            self.iconbitmap('img/icon.ico') # set frame icon
-
+        ##########################################################################################################################################################################################
+        def window1():
+            self.gamemode_lb = Label(self, text = "Gamemode", width = 20, font=("Fixedsys", 17))
+            self.gamemode_lb.grid(row = 1, column = 0, padx=5, sticky='nwse')
+            self.geometry("800x700")
         
-        #############################################################################################
+
+        window0()
+        
         # show everything
+        
         self.mainloop()
         
         
