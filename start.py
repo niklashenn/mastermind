@@ -1,10 +1,9 @@
-
 # imports
 from tkinter.ttk import * 
 from tkinter import *
 import sys
 
-
+# 0=Gelb 1=Blau 2=Grün 3=Braun 4=Lila 5=Orange
 class Start_window:
     windowid=0
     color11 = color12 = color13 = color14 = 'white'
@@ -32,6 +31,14 @@ class Start_window:
 
     spielzug = 0
     gamemode = ""
+
+    result = [0,0,0,0]
+
+    verlauf = [[0 for x in range(4)] for y in range(7)] 
+
+    show_go = True
+
+
     
     def __init__(self):
         # create frame
@@ -99,8 +106,9 @@ class Start_window:
         ##########################################################################################################################################################################################
         
         def windowgame():
+            print(Start_window.verlauf)
             if(Start_window.gamemode=="PvP"):
-                Start_window.spielzug = 1
+                Start_window.spielzug = 9
 
             
             self.geometry("650x950+900+300")
@@ -304,7 +312,60 @@ class Start_window:
 
             canvas8.create_line(340, 0, 340, 100, width=5)
 
+            if(Start_window.gamemode=="PvP"):
+                canvas8.create_text(400, 45,text= "Go", font=("Fixedsys", 17), tag="PvPTag")
+                canvas8.tag_bind("PvPTag", "<Button-1>", lambda x: startpvp())
+
+            def startpvp ():
+            ######################################################
+                
+                if(Start_window.show_go):
+                    Start_window.result[0]=colortonumber(Start_window.color91)
+                    Start_window.result[1]=colortonumber(Start_window.color92)
+                    Start_window.result[2]=colortonumber(Start_window.color93)
+                    Start_window.result[3]=colortonumber(Start_window.color94)
+                    Start_window.color91 = Start_window.color92 = Start_window.color93 = Start_window.color94="white"
+                    Start_window.show_go = False
+                    Start_window.spielzug = 1
+                canvas()
+                
+                
+
+
+                
+        def colortonumber(color):
+            if(color=="yellow"):
+                return 0
+            if(color=="blue"):
+                return 1
+            if(color=="green"):
+                return 2
+            if(color=="brown"):
+                return 3
+            if(color=="purple"):
+                return 4
+            if(color=="orange"):
+                return 5
+                
         
+        def numbertocolor(number):
+            if(number==0):
+                return "yellow"
+            if(number==1):
+                return "blue"
+            if(number==2):
+                return "green"
+            if(number==3):
+                return "brown"
+            if(number==4):
+                return "purple"
+            if(number==5):
+                return "orange"
+            
+
+# 0=Gelb 1=Blau 2=Grün 3=Braun 4=Lila 5=Orange
+
+
         
 
         def save_posn(x):
@@ -313,7 +374,6 @@ class Start_window:
             if(Start_window.spielzug*10<x and Start_window.spielzug*10+5>x):
                 color = popup(self.winfo_pointerx(), self.winfo_pointery(),x)
 
-            #if(Start_window.spielzug*10<x and Start_window.spielzug*10+5 > Start_window.spielzug*10 ):
                 
         
             
