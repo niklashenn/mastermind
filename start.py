@@ -47,7 +47,7 @@ class Start_window:
         
         #####################################################################
         self = Tk()
-        self.title("Mastermind - Start") # set frame titleµ
+        self.title("Mastermind - Start") # set frame title
         self.iconbitmap('img/icon.ico') # set frame icon
 
         def clear_frame():
