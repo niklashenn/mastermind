@@ -1,4 +1,5 @@
 # imports
+from os import name
 from tkinter.ttk import * 
 from tkinter import *
 import sys
@@ -6,6 +7,7 @@ import sys
 # 0=Gelb 1=Blau 2=Grün 3=Braun 4=Lila 5=Orange
 class Start_window:
     windowid=0
+
     color11 = color12 = color13 = color14 = 'white'
     ccolor11 = ccolor12 = ccolor13 = ccolor14 = 'white'
 
@@ -144,13 +146,22 @@ class Start_window:
 
             canvas1.create_line(340, 0, 340, 100, width=5)
 
-            canvas1.create_oval(370, 10, 400, 40, fill=Start_window.ccolor11 , outline='black', tag="control11")
+            def row1():
+                Start_window.spielzug = 2
+                canvas()
+            
 
-            canvas1.create_oval(410, 10, 440, 40, fill=Start_window.ccolor12 , outline='black', tag="control12")
+            if(Start_window.spielzug==1):
+                canvas1.create_text(400, 45,text= "Go", font=("Fixedsys", 17), tag="PvPTag1")
+                canvas1.tag_bind("PvPTag1", "<Button-1>", lambda x: row1())
+            else:
+                canvas1.create_oval(370, 10, 400, 40, fill=Start_window.ccolor11 , outline='black', tag="control11")
+                canvas1.create_oval(410, 10, 440, 40, fill=Start_window.ccolor12 , outline='black', tag="control12")
+                canvas1.create_oval(370, 50, 400, 80, fill=Start_window.ccolor13 , outline='black', tag="control13")
+                canvas1.create_oval(410, 50, 440, 80, fill=Start_window.ccolor14 , outline='black', tag="control14")
 
-            canvas1.create_oval(370, 50, 400, 80, fill=Start_window.ccolor13 , outline='black', tag="control13")
-
-            canvas1.create_oval(410, 50, 440, 80, fill=Start_window.ccolor14 , outline='black', tag="control14")
+                
+                
             
             #canvas1.bind("<Button-1>", save_posn)
     
@@ -171,13 +182,20 @@ class Start_window:
 
             canvas2.create_line(340, 0, 340, 100, width=5)
 
-            canvas2.create_oval(370, 10, 400, 40, fill=Start_window.ccolor21 , outline='black', tag="control21")
 
-            canvas2.create_oval(410, 10, 440, 40, fill=Start_window.ccolor22 , outline='black', tag="control22")
+            def row2():
+                Start_window.spielzug = 3
+                canvas()
+            
 
-            canvas2.create_oval(370, 50, 400, 80, fill=Start_window.ccolor23 , outline='black', tag="control23")
-
-            canvas2.create_oval(410, 50, 440, 80, fill=Start_window.ccolor24 , outline='black', tag="control24")
+            if(Start_window.spielzug==2):
+                canvas2.create_text(400, 45,text= "Go", font=("Fixedsys", 17), tag="PvPTag2")
+                canvas2.tag_bind("PvPTag2", "<Button-1>", lambda x: row2())
+            else:
+                canvas2.create_oval(370, 10, 400, 40, fill=Start_window.ccolor21 , outline='black', tag="control21")
+                canvas2.create_oval(410, 10, 440, 40, fill=Start_window.ccolor22 , outline='black', tag="control22")
+                canvas2.create_oval(370, 50, 400, 80, fill=Start_window.ccolor23 , outline='black', tag="control23")
+                canvas2.create_oval(410, 50, 440, 80, fill=Start_window.ccolor24 , outline='black', tag="control24")
             
 
             canvas3 = Canvas(self, width=canvaswidth, height=canvasheight,  highlightthickness=canvasht, bg=canvasbg, highlightbackground=canvashbg)
@@ -197,10 +215,18 @@ class Start_window:
 
             canvas3.create_line(340, 0, 340, 100, width=5)
             
-            canvas3.create_oval(370, 10, 400, 40, fill=Start_window.ccolor11 , outline='black', tag="control31")
-            canvas3.create_oval(410, 10, 440, 40, fill=Start_window.ccolor12 , outline='black', tag="control32")
-            canvas3.create_oval(370, 50, 400, 80, fill=Start_window.ccolor13 , outline='black', tag="control33")
-            canvas3.create_oval(410, 50, 440, 80, fill=Start_window.ccolor14 , outline='black', tag="control34")
+            def row3():
+                Start_window.spielzug = 4
+                canvas()
+
+            if(Start_window.spielzug==3):
+                canvas3.create_text(400, 45,text= "Go", font=("Fixedsys", 17), tag="PvPTag3")
+                canvas3.tag_bind("PvPTag3", "<Button-1>", lambda x: row3())
+            else:
+                canvas3.create_oval(370, 10, 400, 40, fill=Start_window.ccolor31 , outline='black', tag="control31")
+                canvas3.create_oval(410, 10, 440, 40, fill=Start_window.ccolor32 , outline='black', tag="control32")
+                canvas3.create_oval(370, 50, 400, 80, fill=Start_window.ccolor33 , outline='black', tag="control33")
+                canvas3.create_oval(410, 50, 440, 80, fill=Start_window.ccolor34 , outline='black', tag="control34")
             
 
             canvas4 = Canvas(self, width=canvaswidth, height=canvasheight, highlightthickness=canvasht, bg=canvasbg, highlightbackground=canvashbg)
@@ -220,10 +246,19 @@ class Start_window:
 
             canvas4.create_line(340, 0, 340, 100, width=5)
 
-            canvas4.create_oval(370, 10, 400, 40, fill=Start_window.ccolor11 , outline='black', tag="control41")
-            canvas4.create_oval(410, 10, 440, 40, fill=Start_window.ccolor12 , outline='black', tag="control42")
-            canvas4.create_oval(370, 50, 400, 80, fill=Start_window.ccolor13 , outline='black', tag="control43")
-            canvas4.create_oval(410, 50, 440, 80, fill=Start_window.ccolor14 , outline='black', tag="control44")
+            def row4():
+                Start_window.spielzug = 5
+                canvas()
+            
+
+            if(Start_window.spielzug==4):
+                canvas4.create_text(400, 45,text= "Go", font=("Fixedsys", 17), tag="PvPTag4")
+                canvas4.tag_bind("PvPTag4", "<Button-1>", lambda x: row4())
+            else:
+                canvas4.create_oval(370, 10, 400, 40, fill=Start_window.ccolor41 , outline='black', tag="control41")
+                canvas4.create_oval(410, 10, 440, 40, fill=Start_window.ccolor42 , outline='black', tag="control42")
+                canvas4.create_oval(370, 50, 400, 80, fill=Start_window.ccolor43 , outline='black', tag="control43")
+                canvas4.create_oval(410, 50, 440, 80, fill=Start_window.ccolor44 , outline='black', tag="control44")
             
 
             canvas5 = Canvas(self, width=canvaswidth, height=canvasheight, highlightthickness=canvasht, bg=canvasbg, highlightbackground=canvashbg)
@@ -243,10 +278,20 @@ class Start_window:
 
             canvas5.create_line(340, 0, 340, 100, width=5)
 
-            canvas5.create_oval(370, 10, 400, 40, fill=Start_window.ccolor11 , outline='black', tag="control51")
-            canvas5.create_oval(410, 10, 440, 40, fill=Start_window.ccolor12 , outline='black', tag="control52")
-            canvas5.create_oval(370, 50, 400, 80, fill=Start_window.ccolor13 , outline='black', tag="control53")
-            canvas5.create_oval(410, 50, 440, 80, fill=Start_window.ccolor14 , outline='black', tag="control54")
+
+            def row5():
+                Start_window.spielzug = 6
+                canvas()
+            
+
+            if(Start_window.spielzug==5):
+                canvas5.create_text(400, 45,text= "Go", font=("Fixedsys", 17), tag="PvPTag5")
+                canvas5.tag_bind("PvPTag5", "<Button-1>", lambda x: row5())
+            else:
+                canvas5.create_oval(370, 10, 400, 40, fill=Start_window.ccolor51 , outline='black', tag="control51")
+                canvas5.create_oval(410, 10, 440, 40, fill=Start_window.ccolor52 , outline='black', tag="control52")
+                canvas5.create_oval(370, 50, 400, 80, fill=Start_window.ccolor53 , outline='black', tag="control53")
+                canvas5.create_oval(410, 50, 440, 80, fill=Start_window.ccolor54 , outline='black', tag="control54")
             
 
             canvas6 = Canvas(self, width=canvaswidth, height=canvasheight, highlightthickness=canvasht, bg=canvasbg, highlightbackground=canvashbg)
@@ -266,10 +311,19 @@ class Start_window:
 
             canvas6.create_line(340, 0, 340, 100, width=5)
 
-            canvas6.create_oval(370, 10, 400, 40, fill=Start_window.ccolor11 , outline='black', tag="control61")
-            canvas6.create_oval(410, 10, 440, 40, fill=Start_window.ccolor12 , outline='black', tag="control62")
-            canvas6.create_oval(370, 50, 400, 80, fill=Start_window.ccolor13 , outline='black', tag="control63")
-            canvas6.create_oval(410, 50, 440, 80, fill=Start_window.ccolor14 , outline='black', tag="control64")
+            def row6():
+                Start_window.spielzug = 7
+                canvas()
+            
+
+            if(Start_window.spielzug==6):
+                canvas6.create_text(400, 45,text= "Go", font=("Fixedsys", 17), tag="PvPTag6")
+                canvas6.tag_bind("PvPTag6", "<Button-1>", lambda x: row6())
+            else:
+                canvas6.create_oval(370, 10, 400, 40, fill=Start_window.ccolor61 , outline='black', tag="control61")
+                canvas6.create_oval(410, 10, 440, 40, fill=Start_window.ccolor62 , outline='black', tag="control62")
+                canvas6.create_oval(370, 50, 400, 80, fill=Start_window.ccolor63 , outline='black', tag="control63")
+                canvas6.create_oval(410, 50, 440, 80, fill=Start_window.ccolor64 , outline='black', tag="control64")
             
 
             canvas7 = Canvas(self, width=canvaswidth, height=canvasheight, highlightthickness=canvasht, bg=canvasbg, highlightbackground=canvashbg)
@@ -289,10 +343,19 @@ class Start_window:
 
             canvas7.create_line(340, 0, 340, 100, width=5)
 
-            canvas7.create_oval(370, 10, 400, 40, fill=Start_window.ccolor11 , outline='black', tag="control71")
-            canvas7.create_oval(410, 10, 440, 40, fill=Start_window.ccolor12 , outline='black', tag="control72")
-            canvas7.create_oval(370, 50, 400, 80, fill=Start_window.ccolor13 , outline='black', tag="control73")
-            canvas7.create_oval(410, 50, 440, 80, fill=Start_window.ccolor14 , outline='black', tag="control74")
+            def row7():
+                Start_window.spielzug = 8
+                canvas()
+            
+
+            if(Start_window.spielzug==7):
+                canvas7.create_text(400, 45,text= "Go", font=("Fixedsys", 17), tag="PvPTag7")
+                canvas7.tag_bind("PvPTag7", "<Button-1>", lambda x: row7())
+            else:
+                canvas7.create_oval(370, 10, 400, 40, fill=Start_window.ccolor71 , outline='black', tag="control71")
+                canvas7.create_oval(410, 10, 440, 40, fill=Start_window.ccolor72 , outline='black', tag="control72")
+                canvas7.create_oval(370, 50, 400, 80, fill=Start_window.ccolor73 , outline='black', tag="control73")
+                canvas7.create_oval(410, 50, 440, 80, fill=Start_window.ccolor74 , outline='black', tag="control74")
             
             
             canvas8 = Canvas(self, width=canvaswidth, height=canvasheight, highlightthickness=canvasht, bg=canvasbg, highlightbackground=canvashbg)
@@ -313,8 +376,9 @@ class Start_window:
             canvas8.create_line(340, 0, 340, 100, width=5)
 
             if(Start_window.gamemode=="PvP"):
-                canvas8.create_text(400, 45,text= "Go", font=("Fixedsys", 17), tag="PvPTag")
-                canvas8.tag_bind("PvPTag", "<Button-1>", lambda x: startpvp())
+                if(Start_window.show_go):
+                    canvas8.create_text(400, 45,text= "Go", font=("Fixedsys", 17), tag="PvPTag")
+                    canvas8.tag_bind("PvPTag", "<Button-1>", lambda x: startpvp())
 
             def startpvp ():
             ######################################################
@@ -327,7 +391,7 @@ class Start_window:
                     Start_window.color91 = Start_window.color92 = Start_window.color93 = Start_window.color94="white"
                     Start_window.show_go = False
                     Start_window.spielzug = 1
-                canvas()
+                    canvas()
                 
                 
 
@@ -387,9 +451,11 @@ class Start_window:
             popup.title("Mastermind - Start") # set frame title
             popup.iconbitmap('img/icon.ico') # set frame icon
             popup.geometry("50x50+"+str(x)+"+"+str(y-80))
+
             def setcolor1():
                 setcolor(color_cb.get(),id)
                 popup.destroy()
+                
             color_cb = Combobox(popup, values=['Gelb', 'Blau', 'Grün', 'Braun', 'Lila', 'Orange'], state="readonly")
             color_cb.current(0)
             color_cb.grid(row=0, column=0, padx=5, pady = 5)
