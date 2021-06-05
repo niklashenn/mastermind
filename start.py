@@ -40,7 +40,7 @@ class Start_window:
 
     show_go = True
 
-
+    won = False
     
     def __init__(self):
         # create frame
@@ -99,6 +99,7 @@ class Start_window:
             #self.exit_bt.pack(side=RIGHT)
             def getgamemode():
                 Start_window.gamemode = var.get()
+                Start_window.won = False
                 changewindow(1)
 
             # create play button
@@ -108,7 +109,6 @@ class Start_window:
         ##########################################################################################################################################################################################
         
         def windowgame():
-            print(Start_window.verlauf)
             if(Start_window.gamemode=="PvP"):
                 Start_window.spielzug = 9
 
@@ -129,6 +129,15 @@ class Start_window:
             canvashbg = "black"
             canvasht = 2
             
+            if(Start_window.won==True):
+                Start_window.color91 = numbertocolor(Start_window.result[0])
+                Start_window.color92 = numbertocolor(Start_window.result[1])
+                Start_window.color93 = numbertocolor(Start_window.result[2])
+                Start_window.color94 = numbertocolor(Start_window.result[3])
+                Start_window.spielzug = 100
+                
+                
+            
             canvas1 = Canvas(self, width=canvaswidth, height=canvasheight, highlightthickness=canvasht, bg=canvasbg, highlightbackground=canvashbg)
             canvas1.grid(row=1, column=0, padx=canvaspadx, pady=canvaspady)
 
@@ -147,9 +156,228 @@ class Start_window:
             canvas1.create_line(340, 0, 340, 100, width=5)
 
             def row1():
+                Start_window.verlauf[0][0]=colortonumber(Start_window.color11)
+                Start_window.verlauf[0][1]=colortonumber(Start_window.color12)
+                Start_window.verlauf[0][2]=colortonumber(Start_window.color13)
+                Start_window.verlauf[0][3]=colortonumber(Start_window.color14)
+                checkverlaufandresult()
                 Start_window.spielzug = 2
                 canvas()
             
+            def checkverlaufandresult():
+                redfields = 0
+                blackfields = 0
+                if(Start_window.spielzug == 1):
+                    workverlauf = [Start_window.verlauf[Start_window.spielzug-1][0],Start_window.verlauf[Start_window.spielzug-1][1],Start_window.verlauf[Start_window.spielzug-1][2],Start_window.verlauf[Start_window.spielzug-1][3]]
+                    workverlauf = list(set(workverlauf))
+                    print(workverlauf)
+                    for i in range(len(workverlauf)):
+                        for j in range(0, 4):
+                            if(workverlauf[i]==Start_window.result[j]):
+                                redfields=redfields+1
+                    if(Start_window.verlauf[Start_window.spielzug-1][0]==Start_window.result[0]):
+                        blackfields = blackfields +1
+                    if(Start_window.verlauf[Start_window.spielzug-1][1]==Start_window.result[1]):
+                        blackfields = blackfields +1
+                    if(Start_window.verlauf[Start_window.spielzug-1][2]==Start_window.result[2]):
+                        blackfields = blackfields +1
+                    if(Start_window.verlauf[Start_window.spielzug-1][3]==Start_window.result[3]):
+                        blackfields = blackfields +1
+
+                    if(blackfields==4):
+                        Start_window.won = True
+
+
+
+                    redfields = redfields - blackfields
+                    erg = ["white","white","white","white"]
+                    for i in range(0, redfields):
+                        erg[i]="red"
+                    for i in range(redfields, redfields+blackfields):
+                        erg[i]="black"
+                
+                    Start_window.ccolor11=erg[0]
+                    Start_window.ccolor12=erg[1]
+                    Start_window.ccolor13=erg[2]
+                    Start_window.ccolor14=erg[3]
+                
+                if(Start_window.spielzug == 2):
+                    workverlauf = [Start_window.verlauf[Start_window.spielzug-1][0],Start_window.verlauf[Start_window.spielzug-1][1],Start_window.verlauf[Start_window.spielzug-1][2],Start_window.verlauf[Start_window.spielzug-1][3]]
+                    workverlauf = list(set(workverlauf))
+                    print(workverlauf)
+                    for i in range(len(workverlauf)):
+                        for j in range(0, 4):
+                            print(i)
+                            print(j)
+                            if(workverlauf[i]==Start_window.result[j]):
+                                redfields=redfields+1
+                    if(Start_window.verlauf[Start_window.spielzug-1][0]==Start_window.result[0]):
+                        blackfields = blackfields +1
+                    if(Start_window.verlauf[Start_window.spielzug-1][1]==Start_window.result[1]):
+                        blackfields = blackfields +1
+                    if(Start_window.verlauf[Start_window.spielzug-1][2]==Start_window.result[2]):
+                        blackfields = blackfields +1
+                    if(Start_window.verlauf[Start_window.spielzug-1][3]==Start_window.result[3]):
+                        blackfields = blackfields +1
+                
+                    redfields = redfields - blackfields
+                    erg = ["white","white","white","white"]
+                    for i in range(0, redfields):
+                        erg[i]="red"
+                    for i in range(redfields, redfields+blackfields):
+                        erg[i]="black"
+                
+                    Start_window.ccolor21=erg[0]
+                    Start_window.ccolor22=erg[1]
+                    Start_window.ccolor23=erg[2]
+                    Start_window.ccolor24=erg[3]
+                
+                if(Start_window.spielzug == 3):
+                    workverlauf = [Start_window.verlauf[Start_window.spielzug-1][0],Start_window.verlauf[Start_window.spielzug-1][1],Start_window.verlauf[Start_window.spielzug-1][2],Start_window.verlauf[Start_window.spielzug-1][3]]
+                    workverlauf = list(set(workverlauf))
+                    print(workverlauf)
+                    for i in range(len(workverlauf)):
+                        for j in range(0, 4):
+                            if(workverlauf[i]==Start_window.result[j]):
+                                redfields=redfields+1
+                    if(Start_window.verlauf[Start_window.spielzug-1][0]==Start_window.result[0]):
+                        blackfields = blackfields +1
+                    if(Start_window.verlauf[Start_window.spielzug-1][1]==Start_window.result[1]):
+                        blackfields = blackfields +1
+                    if(Start_window.verlauf[Start_window.spielzug-1][2]==Start_window.result[2]):
+                        blackfields = blackfields +1
+                    if(Start_window.verlauf[Start_window.spielzug-1][3]==Start_window.result[3]):
+                        blackfields = blackfields +1
+                
+                    redfields = redfields - blackfields
+                    erg = ["white","white","white","white"]
+                    for i in range(0, redfields):
+                        erg[i]="red"
+                    for i in range(redfields, redfields+blackfields):
+                        erg[i]="black"
+                
+                    Start_window.ccolor31=erg[0]
+                    Start_window.ccolor32=erg[1]
+                    Start_window.ccolor33=erg[2]
+                    Start_window.ccolor34=erg[3]
+                
+                if(Start_window.spielzug == 4):
+                    workverlauf = [Start_window.verlauf[Start_window.spielzug-1][0],Start_window.verlauf[Start_window.spielzug-1][1],Start_window.verlauf[Start_window.spielzug-1][2],Start_window.verlauf[Start_window.spielzug-1][3]]
+                    workverlauf = list(set(workverlauf))
+                    print(workverlauf)
+                    for i in range(len(workverlauf)):
+                        for j in range(0, 4):
+                            if(workverlauf[i]==Start_window.result[j]):
+                                redfields=redfields+1
+                    if(Start_window.verlauf[Start_window.spielzug-1][0]==Start_window.result[0]):
+                        blackfields = blackfields +1
+                    if(Start_window.verlauf[Start_window.spielzug-1][1]==Start_window.result[1]):
+                        blackfields = blackfields +1
+                    if(Start_window.verlauf[Start_window.spielzug-1][2]==Start_window.result[2]):
+                        blackfields = blackfields +1
+                    if(Start_window.verlauf[Start_window.spielzug-1][3]==Start_window.result[3]):
+                        blackfields = blackfields +1
+                
+                    redfields = redfields - blackfields
+                    erg = ["white","white","white","white"]
+                    for i in range(0, redfields):
+                        erg[i]="red"
+                    for i in range(redfields, redfields+blackfields):
+                        erg[i]="black"
+                
+                    Start_window.ccolor41=erg[0]
+                    Start_window.ccolor42=erg[1]
+                    Start_window.ccolor43=erg[2]
+                    Start_window.ccolor44=erg[3]
+                
+                if(Start_window.spielzug == 5):
+                    workverlauf = [Start_window.verlauf[Start_window.spielzug-1][0],Start_window.verlauf[Start_window.spielzug-1][1],Start_window.verlauf[Start_window.spielzug-1][2],Start_window.verlauf[Start_window.spielzug-1][3]]
+                    workverlauf = list(set(workverlauf))
+                    print(workverlauf)
+                    for i in range(len(workverlauf)):
+                        for j in range(0, 4):
+                            if(workverlauf[i]==Start_window.result[j]):
+                                redfields=redfields+1
+                    if(Start_window.verlauf[Start_window.spielzug-1][0]==Start_window.result[0]):
+                        blackfields = blackfields +1
+                    if(Start_window.verlauf[Start_window.spielzug-1][1]==Start_window.result[1]):
+                        blackfields = blackfields +1
+                    if(Start_window.verlauf[Start_window.spielzug-1][2]==Start_window.result[2]):
+                        blackfields = blackfields +1
+                    if(Start_window.verlauf[Start_window.spielzug-1][3]==Start_window.result[3]):
+                        blackfields = blackfields +1
+                
+                    redfields = redfields - blackfields
+                    erg = ["white","white","white","white"]
+                    for i in range(0, redfields):
+                        erg[i]="red"
+                    for i in range(redfields, redfields+blackfields):
+                        erg[i]="black"
+                
+                    Start_window.ccolor51=erg[0]
+                    Start_window.ccolor52=erg[1]
+                    Start_window.ccolor53=erg[2]
+                    Start_window.ccolor54=erg[3]
+                
+                if(Start_window.spielzug == 6):
+                    workverlauf = [Start_window.verlauf[Start_window.spielzug-1][0],Start_window.verlauf[Start_window.spielzug-1][1],Start_window.verlauf[Start_window.spielzug-1][2],Start_window.verlauf[Start_window.spielzug-1][3]]
+                    workverlauf = list(set(workverlauf))
+                    print(workverlauf)
+                    for i in range(len(workverlauf)):
+                        for j in range(0, 4):
+                            if(workverlauf[i]==Start_window.result[j]):
+                                redfields=redfields+1
+                    if(Start_window.verlauf[Start_window.spielzug-1][0]==Start_window.result[0]):
+                        blackfields = blackfields +1
+                    if(Start_window.verlauf[Start_window.spielzug-1][1]==Start_window.result[1]):
+                        blackfields = blackfields +1
+                    if(Start_window.verlauf[Start_window.spielzug-1][2]==Start_window.result[2]):
+                        blackfields = blackfields +1
+                    if(Start_window.verlauf[Start_window.spielzug-1][3]==Start_window.result[3]):
+                        blackfields = blackfields +1
+                
+                    redfields = redfields - blackfields
+                    erg = ["white","white","white","white"]
+                    for i in range(0, redfields):
+                        erg[i]="red"
+                    for i in range(redfields, redfields+blackfields):
+                        erg[i]="black"
+                
+                    Start_window.ccolor61=erg[0]
+                    Start_window.ccolor62=erg[1]
+                    Start_window.ccolor63=erg[2]
+                    Start_window.ccolor64=erg[3]
+                
+                if(Start_window.spielzug == 7):
+                    workverlauf = [Start_window.verlauf[Start_window.spielzug-1][0],Start_window.verlauf[Start_window.spielzug-1][1],Start_window.verlauf[Start_window.spielzug-1][2],Start_window.verlauf[Start_window.spielzug-1][3]]
+                    workverlauf = list(set(workverlauf))
+                    print(workverlauf)
+                    for i in range(len(workverlauf)):
+                        for j in range(0, 4):
+                            if(workverlauf[i]==Start_window.result[j]):
+                                redfields=redfields+1
+                    if(Start_window.verlauf[Start_window.spielzug-1][0]==Start_window.result[0]):
+                        blackfields = blackfields +1
+                    if(Start_window.verlauf[Start_window.spielzug-1][1]==Start_window.result[1]):
+                        blackfields = blackfields +1
+                    if(Start_window.verlauf[Start_window.spielzug-1][2]==Start_window.result[2]):
+                        blackfields = blackfields +1
+                    if(Start_window.verlauf[Start_window.spielzug-1][3]==Start_window.result[3]):
+                        blackfields = blackfields +1
+                
+                    redfields = redfields - blackfields
+                    erg = ["white","white","white","white"]
+                    for i in range(0, redfields):
+                        erg[i]="red"
+                    for i in range(redfields, redfields+blackfields):
+                        erg[i]="black"
+                
+                    Start_window.ccolor71=erg[0]
+                    Start_window.ccolor72=erg[1]
+                    Start_window.ccolor73=erg[2]
+                    Start_window.ccolor74=erg[3]
+                    
+
 
             if(Start_window.spielzug==1):
                 canvas1.create_text(400, 45,text= "Go", font=("Fixedsys", 17), tag="PvPTag1")
@@ -184,6 +412,11 @@ class Start_window:
 
 
             def row2():
+                Start_window.verlauf[1][0]=colortonumber(Start_window.color21)
+                Start_window.verlauf[1][1]=colortonumber(Start_window.color22)
+                Start_window.verlauf[1][2]=colortonumber(Start_window.color23)
+                Start_window.verlauf[1][3]=colortonumber(Start_window.color24)
+                checkverlaufandresult()
                 Start_window.spielzug = 3
                 canvas()
             
@@ -216,6 +449,11 @@ class Start_window:
             canvas3.create_line(340, 0, 340, 100, width=5)
             
             def row3():
+                Start_window.verlauf[2][0]=colortonumber(Start_window.color31)
+                Start_window.verlauf[2][1]=colortonumber(Start_window.color32)
+                Start_window.verlauf[2][2]=colortonumber(Start_window.color33)
+                Start_window.verlauf[2][3]=colortonumber(Start_window.color34)
+                checkverlaufandresult()
                 Start_window.spielzug = 4
                 canvas()
 
@@ -247,6 +485,11 @@ class Start_window:
             canvas4.create_line(340, 0, 340, 100, width=5)
 
             def row4():
+                Start_window.verlauf[3][0]=colortonumber(Start_window.color41)
+                Start_window.verlauf[3][1]=colortonumber(Start_window.color42)
+                Start_window.verlauf[3][2]=colortonumber(Start_window.color43)
+                Start_window.verlauf[3][3]=colortonumber(Start_window.color44)
+                checkverlaufandresult()
                 Start_window.spielzug = 5
                 canvas()
             
@@ -280,6 +523,11 @@ class Start_window:
 
 
             def row5():
+                Start_window.verlauf[4][0]=colortonumber(Start_window.color51)
+                Start_window.verlauf[4][1]=colortonumber(Start_window.color52)
+                Start_window.verlauf[4][2]=colortonumber(Start_window.color53)
+                Start_window.verlauf[4][3]=colortonumber(Start_window.color54)
+                checkverlaufandresult()
                 Start_window.spielzug = 6
                 canvas()
             
@@ -312,6 +560,11 @@ class Start_window:
             canvas6.create_line(340, 0, 340, 100, width=5)
 
             def row6():
+                Start_window.verlauf[5][0]=colortonumber(Start_window.color61)
+                Start_window.verlauf[5][1]=colortonumber(Start_window.color62)
+                Start_window.verlauf[5][2]=colortonumber(Start_window.color63)
+                Start_window.verlauf[5][3]=colortonumber(Start_window.color64)
+                checkverlaufandresult()
                 Start_window.spielzug = 7
                 canvas()
             
@@ -344,6 +597,11 @@ class Start_window:
             canvas7.create_line(340, 0, 340, 100, width=5)
 
             def row7():
+                Start_window.verlauf[6][0]=colortonumber(Start_window.color71)
+                Start_window.verlauf[6][1]=colortonumber(Start_window.color72)
+                Start_window.verlauf[6][2]=colortonumber(Start_window.color73)
+                Start_window.verlauf[6][3]=colortonumber(Start_window.color74)
+                checkverlaufandresult()
                 Start_window.spielzug = 8
                 canvas()
             
@@ -359,7 +617,7 @@ class Start_window:
             
             
             canvas8 = Canvas(self, width=canvaswidth, height=canvasheight, highlightthickness=canvasht, bg=canvasbg, highlightbackground=canvashbg)
-            canvas8.grid(row=8, column=0, padx=canvaspadx, pady=canvaspady*5)
+            canvas8.grid(row=9, column=0, padx=canvaspadx, pady=canvaspady*5)
 
             canvas8.create_oval(10, 15, 70, 75, fill=Start_window.color91 , outline='black', tag="oval91")
             canvas8.tag_bind("oval91", "<Button-1>", lambda x: save_posn(91))
@@ -433,8 +691,6 @@ class Start_window:
         
 
         def save_posn(x):
-            print(Start_window.spielzug*10)
-            print(x)
             if(Start_window.spielzug*10<x and Start_window.spielzug*10+5>x):
                 color = popup(self.winfo_pointerx(), self.winfo_pointery(),x)
 
