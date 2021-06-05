@@ -3,6 +3,7 @@ from os import name
 from tkinter.ttk import * 
 from tkinter import *
 import sys
+import random
 
 # 0=Gelb 1=Blau 2=Grün 3=Braun 4=Lila 5=Orange
 class Start_window:
@@ -41,6 +42,7 @@ class Start_window:
     show_go = True
 
     won = False
+    notwon = False
     
     def __init__(self):
         # create frame
@@ -98,8 +100,39 @@ class Start_window:
             self.exit_bt = Button(self, text = "Exit", width = 6, command = self.destroy)
             #self.exit_bt.pack(side=RIGHT)
             def getgamemode():
+                Start_window.color11 = Start_window.color12 = Start_window.color13 = Start_window.color14 = 'white'
+                Start_window.ccolor11 = Start_window.ccolor12 = Start_window.ccolor13 = Start_window.ccolor14 = 'white'
+
+                Start_window.color21 = Start_window.color22 = Start_window.color23 = Start_window.color24 = 'white'
+                Start_window.ccolor21 = Start_window.ccolor22 = Start_window.ccolor23 = Start_window.ccolor24 = 'white'
+
+                Start_window.color31 = Start_window.color32 = Start_window.color33 = Start_window.color34 = 'white'
+                Start_window.ccolor31 = Start_window.ccolor32 = Start_window.ccolor33 = Start_window.ccolor34 = 'white'
+
+                Start_window.color41 = Start_window.color42 = Start_window.color43 = Start_window.color44 = 'white'
+                Start_window.ccolor41 = Start_window.ccolor42 = Start_window.ccolor43 = Start_window.ccolor44 = 'white'
+
+                Start_window.color51 = Start_window.color52 = Start_window.color53 = Start_window.color54 = 'white'
+                Start_window.ccolor51 = Start_window.ccolor52 = Start_window.ccolor53 = Start_window.ccolor54 = 'white'
+
+                Start_window.color61 = Start_window.color62 = Start_window.color63 = Start_window.color64 = 'white'
+                Start_window.ccolor61 = Start_window.ccolor62 = Start_window.ccolor63 = Start_window.ccolor64 = 'white'
+
+                Start_window.color71 = Start_window.color72 = Start_window.color73 = Start_window.color74 = 'white'
+                Start_window.ccolor71 = Start_window.ccolor72 = Start_window.ccolor73 = Start_window.ccolor74 = 'white'
+
+                Start_window.color91 = Start_window.color92 = Start_window.color93 = Start_window.color94 = 'white'
+
+                Start_window.result = [0,0,0,0]
+
                 Start_window.gamemode = var.get()
                 Start_window.won = False
+                Start_window.verlauf = [[0 for x in range(4)] for y in range(7)] 
+                
+                Start_window.notwon = False
+
+                Start_window.show_go = True
+
                 changewindow(1)
 
             # create play button
@@ -111,6 +144,14 @@ class Start_window:
         def windowgame():
             if(Start_window.gamemode=="PvP"):
                 Start_window.spielzug = 9
+            if(Start_window.gamemode=="PvC"):
+                code = [0,1,2,3,4,5]
+                random.shuffle(code)
+                Start_window.result[0]=code[0]
+                Start_window.result[1]=code[1]
+                Start_window.result[2]=code[2]
+                Start_window.result[3]=code[3]
+                Start_window.spielzug=1
 
             
             self.geometry("650x950+900+300")
@@ -135,6 +176,13 @@ class Start_window:
                 Start_window.color93 = numbertocolor(Start_window.result[2])
                 Start_window.color94 = numbertocolor(Start_window.result[3])
                 Start_window.spielzug = 100
+                wonpup()
+            if(Start_window.notwon==True):
+                Start_window.color91 = numbertocolor(Start_window.result[0])
+                Start_window.color92 = numbertocolor(Start_window.result[1])
+                Start_window.color93 = numbertocolor(Start_window.result[2])
+                Start_window.color94 = numbertocolor(Start_window.result[3])
+                notwonpup()
                 
                 
             
@@ -187,8 +235,6 @@ class Start_window:
                     if(blackfields==4):
                         Start_window.won = True
 
-
-
                     redfields = redfields - blackfields
                     erg = ["white","white","white","white"]
                     for i in range(0, redfields):
@@ -219,6 +265,9 @@ class Start_window:
                         blackfields = blackfields +1
                     if(Start_window.verlauf[Start_window.spielzug-1][3]==Start_window.result[3]):
                         blackfields = blackfields +1
+
+                    if(blackfields==4):
+                        Start_window.won = True
                 
                     redfields = redfields - blackfields
                     erg = ["white","white","white","white"]
@@ -248,6 +297,9 @@ class Start_window:
                         blackfields = blackfields +1
                     if(Start_window.verlauf[Start_window.spielzug-1][3]==Start_window.result[3]):
                         blackfields = blackfields +1
+
+                    if(blackfields==4):
+                        Start_window.won = True
                 
                     redfields = redfields - blackfields
                     erg = ["white","white","white","white"]
@@ -277,6 +329,9 @@ class Start_window:
                         blackfields = blackfields +1
                     if(Start_window.verlauf[Start_window.spielzug-1][3]==Start_window.result[3]):
                         blackfields = blackfields +1
+                    
+                    if(blackfields==4):
+                        Start_window.won = True
                 
                     redfields = redfields - blackfields
                     erg = ["white","white","white","white"]
@@ -306,6 +361,9 @@ class Start_window:
                         blackfields = blackfields +1
                     if(Start_window.verlauf[Start_window.spielzug-1][3]==Start_window.result[3]):
                         blackfields = blackfields +1
+                    
+                    if(blackfields==4):
+                        Start_window.won = True
                 
                     redfields = redfields - blackfields
                     erg = ["white","white","white","white"]
@@ -335,6 +393,9 @@ class Start_window:
                         blackfields = blackfields +1
                     if(Start_window.verlauf[Start_window.spielzug-1][3]==Start_window.result[3]):
                         blackfields = blackfields +1
+
+                    if(blackfields==4):
+                        Start_window.won = True
                 
                     redfields = redfields - blackfields
                     erg = ["white","white","white","white"]
@@ -364,7 +425,8 @@ class Start_window:
                         blackfields = blackfields +1
                     if(Start_window.verlauf[Start_window.spielzug-1][3]==Start_window.result[3]):
                         blackfields = blackfields +1
-                
+
+                    
                     redfields = redfields - blackfields
                     erg = ["white","white","white","white"]
                     for i in range(0, redfields):
@@ -376,6 +438,14 @@ class Start_window:
                     Start_window.ccolor72=erg[1]
                     Start_window.ccolor73=erg[2]
                     Start_window.ccolor74=erg[3]
+
+                    if(blackfields==4):
+                        Start_window.won = True
+                    else:
+                        Start_window.notwon = True
+
+
+                    
                     
 
 
@@ -695,9 +765,33 @@ class Start_window:
                 color = popup(self.winfo_pointerx(), self.winfo_pointery(),x)
 
                 
-        
+
+        def wonpup():
+            def backmain():
+                changewindow(0)
+                wonpopup.destroy()
+            wonpopup = Tk()
+            wonpopup.title("Glückwunsch") # set frame title
+            wonpopup.iconbitmap('img/icon.ico') # set frame icon
+            wonpopup.geometry("390x300+1050+500")   
+            wonpopup.title_lb = Label(wonpopup, text = "Glückwunsch Sie haben\ngewonnen!!!", font=("Fixedsys", 17))
+            wonpopup.title_lb.grid(row=0, column=0, padx=20, pady = 5)
+            wonpopup.back_bt = Button(wonpopup, text = "Back to\nMenu", font=("Fixedsys", 17), width = 15, height=5, bg="lightgreen",command=backmain)
+            wonpopup.back_bt.grid(row = 1, column = 0, pady = 10, sticky='s')
             
-        
+        def notwonpup():
+            def backmain():
+                changewindow(0)
+                notwonpopup.destroy()
+            notwonpopup = Tk()
+            notwonpopup.title("Pech") # set frame title
+            notwonpopup.iconbitmap('img/icon.ico') # set frame icon
+            notwonpopup.geometry("390x300+1050+500")   
+            notwonpopup.title_lb = Label(notwonpopup, text = "Pech gehabt probiere\n es nochmal !", font=("Fixedsys", 17))
+            notwonpopup.title_lb.grid(row=0, column=0, padx=20, pady = 5)
+            notwonpopup.back_bt = Button(notwonpopup, text = "Back to\nMenu", font=("Fixedsys", 17), width = 15, height=5, bg="lightgreen",command=backmain)
+            notwonpopup.back_bt.grid(row = 1, column = 0, pady = 10, sticky='s')
+
         def popup(x,y,id):
             check = False
             popup = Tk()
