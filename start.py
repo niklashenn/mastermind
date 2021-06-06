@@ -10,6 +10,8 @@ import random
 class Mastermind:
     windowid=0
 
+    wonwindow=True
+
     color11 = color12 = color13 = color14 = 'white'
     ccolor11 = ccolor12 = ccolor13 = ccolor14 = 'white'
 
@@ -44,6 +46,12 @@ class Mastermind:
 
     won = False
     notwon = False
+
+    optioncolor = []
+
+
+    poscolors = []
+    betterposcolors = ["","","",""]
     
     def __init__(self):
         # create frame
@@ -122,6 +130,8 @@ class Mastermind:
 
                 Mastermind.result = [0,0,0,0]
 
+                Mastermind.wonwindow = True
+
                 Mastermind.gamemode = var.get()
                 print(str(Mastermind.gamemode))
                 Mastermind.won = False
@@ -130,6 +140,13 @@ class Mastermind:
                 Mastermind.notwon = False
 
                 Mastermind.show_go = True
+
+                Mastermind.optioncolor = []
+
+
+                Mastermind.poscolors = []
+                Mastermind.betterposcolors = ["","","",""]
+    
 
                 if(Mastermind.gamemode=="PvP" or Mastermind.gamemode=="PvC" or Mastermind.gamemode=="CvP"):
                     changewindow(1)
@@ -160,6 +177,8 @@ class Mastermind:
                 Mastermind.result[2]=code[2]
                 Mastermind.result[3]=code[3]
                 Mastermind.spielzug=1
+            if(Mastermind.gamemode=="CvP"):
+                Mastermind.spielzug = 9
 
             
             self.geometry("650x950+900+300")
@@ -210,6 +229,125 @@ class Mastermind:
             canvas1.tag_bind("oval14", "<Button-1>", lambda x: save_posn(14))
 
             canvas1.create_line(340, 0, 340, 100, width=5)
+            def cvp1():
+                print(Mastermind.result)
+                Mastermind.color11="yellow"
+                Mastermind.color12="yellow"
+                Mastermind.color13="blue"
+                Mastermind.color14="blue"
+                canvas()
+                row1()
+
+            def cvp2():
+                Mastermind.color21="green"
+                Mastermind.color22="green"
+                Mastermind.color23="brown"
+                Mastermind.color24="brown"
+                row2()
+
+            def cvp3():
+                Mastermind.color31="purple"
+                Mastermind.color32="purple"
+                Mastermind.color33="orange"
+                Mastermind.color34="orange"
+                row3()
+            
+            def cvp4():
+                if(len(Mastermind.poscolors)==4):
+                    Mastermind.color41=Mastermind.poscolors[0]
+                    Mastermind.color42=Mastermind.poscolors[0]
+                    Mastermind.color43=Mastermind.poscolors[1]
+                    Mastermind.color44=Mastermind.poscolors[1]
+
+                    
+                    
+                else:
+                    print()
+                
+                row4()
+            
+            def cvp5():
+                if(len(Mastermind.poscolors)==4):
+                    cc4=[Mastermind.ccolor41,Mastermind.ccolor42,Mastermind.ccolor43,Mastermind.ccolor44]
+                    zaehlerred = 0
+                    zaehlerblack = 0 
+                    for x in cc4:
+                        if(x=="red"):
+                            zaehlerred = zaehlerred+1
+                        elif(x=="black"):
+                            zaehlerblack = zaehlerblack+1
+                    if(zaehlerred==1 and zaehlerblack==1):
+                        print("111")
+                        Mastermind.color51=Mastermind.poscolors[0]
+                        Mastermind.color52=Mastermind.poscolors[0]
+                        Mastermind.color53=Mastermind.poscolors[2]
+                        Mastermind.color54=Mastermind.poscolors[2]
+                    elif(zaehlerred==2 and zaehlerblack==0):
+                        print("222")
+                        Mastermind.color51=Mastermind.poscolors[2]
+                        Mastermind.color52=Mastermind.poscolors[2]
+                        Mastermind.color53=Mastermind.poscolors[3]
+                        Mastermind.color54=Mastermind.poscolors[3]
+                        Mastermind.betterposcolors[0]=Mastermind.poscolors[1]
+                        Mastermind.betterposcolors[3]=Mastermind.poscolors[0]
+                    elif(zaehlerred==0 and zaehlerblack==2):
+                        print("333")
+                        Mastermind.color51=Mastermind.poscolors[2]
+                        Mastermind.color52=Mastermind.poscolors[2]
+                        Mastermind.color53=Mastermind.poscolors[3]
+                        Mastermind.color54=Mastermind.poscolors[3]
+                        Mastermind.betterposcolors[0]=Mastermind.poscolors[0]
+                        Mastermind.betterposcolors[3]=Mastermind.poscolors[1]
+                    
+                row5() 
+            
+            def cvp6():
+                if(len(Mastermind.poscolors)==4):
+                    
+                    cc5=[Mastermind.ccolor51,Mastermind.ccolor52,Mastermind.ccolor53,Mastermind.ccolor54]
+                    zaehlerred = 0
+                    zaehlerblack = 0 
+                    for x in cc5:
+                        if(x=="red"):
+                            zaehlerred = zaehlerred+1
+                        elif(x=="black"):
+                            zaehlerblack = zaehlerblack+1
+                    if(Mastermind.betterposcolors[0]==""):
+                        print("Hallo1")
+                        print(str(zaehlerblack) + "  " + str(zaehlerred))
+                        if(zaehlerred==2 and zaehlerblack==0):
+                            Mastermind.betterposcolors[0]=Mastermind.poscolors[2]
+                            Mastermind.betterposcolors[2]=Mastermind.poscolors[0]
+                            Mastermind.betterposcolors[3]=Mastermind.poscolors[1]
+                            Mastermind.betterposcolors[1]=Mastermind.poscolors[3]
+                        elif(zaehlerred==0 and zaehlerblack==2):
+                            Mastermind.betterposcolors[0]=Mastermind.poscolors[0]
+                            Mastermind.betterposcolors[2]=Mastermind.poscolors[2]
+                            Mastermind.betterposcolors[1]=Mastermind.poscolors[1]
+                            Mastermind.betterposcolors[3]=Mastermind.poscolors[3]
+                    else:
+                        print("Hallo2")
+                        if(zaehlerred==2 and zaehlerblack==0):
+                            Mastermind.betterposcolors[1]=Mastermind.poscolors[3]
+                            Mastermind.betterposcolors[3]=Mastermind.poscolors[2]
+                        elif(zaehlerred==0 and zaehlerblack==2):
+                            Mastermind.betterposcolors[3]=Mastermind.poscolors[3]
+                            Mastermind.betterposcolors[1]=Mastermind.poscolors[2]
+                    print(Mastermind.poscolors)
+                    print(Mastermind.betterposcolors)
+                    Mastermind.color61=Mastermind.betterposcolors[0]
+                    Mastermind.color62=Mastermind.betterposcolors[1]
+                    Mastermind.color63=Mastermind.betterposcolors[2]
+                    Mastermind.color64=Mastermind.betterposcolors[3]
+                row6()
+
+            def cvp7():
+                if(Mastermind.betterposcolors[0]!="" and Mastermind.betterposcolors[1]!="" and Mastermind.betterposcolors[2]!="" and Mastermind.betterposcolors[3]!=""):
+                    Mastermind.color71=Mastermind.betterposcolors[1]
+                    Mastermind.color72=Mastermind.betterposcolors[0]
+                    Mastermind.color73=Mastermind.betterposcolors[3]
+                    Mastermind.color74=Mastermind.betterposcolors[2]
+                row7()
 
             def row1():
                 Mastermind.verlauf[0][0]=colortonumber(Mastermind.color11)
@@ -219,6 +357,28 @@ class Mastermind:
                 checkverlaufandresult()
                 Mastermind.spielzug = 2
                 canvas()
+                if(Mastermind.gamemode=="CvP"):
+                    cc1=[Mastermind.ccolor11,Mastermind.ccolor12,Mastermind.ccolor13,Mastermind.ccolor14]                            
+                    zaehlerred = 0
+                    zaehlerblack = 0 
+                    for x in cc1:
+                        if(x=="red"):
+                            zaehlerred = zaehlerred+1
+                        elif(x=="black"):
+                            zaehlerblack = zaehlerblack+1
+                    if(zaehlerblack==0 and zaehlerred==0):
+                        Mastermind.poscolors.append("green")
+                        Mastermind.poscolors.append("brown")
+                        Mastermind.poscolors.append("purple")
+                        Mastermind.poscolors.append("orange")
+                    elif(zaehlerred == 1 and zaehlerblack == 0 or zaehlerred == 0 and zaehlerblack == 1):
+                        Mastermind.optioncolor.append("yellow")
+                        Mastermind.optioncolor.append("blue")
+                    elif(zaehlerred == 1 and zaehlerblack == 1 or zaehlerred == 2 and zaehlerblack == 0 or zaehlerred == 0 and zaehlerblack == 2):
+                        Mastermind.poscolors.append("yellow")
+                        Mastermind.poscolors.append("blue")       
+
+                    cvp2()
             
             def checkverlaufandresult():
                 redfields = 0
@@ -241,6 +401,7 @@ class Mastermind:
 
                     if(blackfields==4):
                         Mastermind.won = True
+                        Mastermind.gamemode = "PvP"
 
                     redfields = redfields - blackfields
                     erg = ["white","white","white","white"]
@@ -272,6 +433,7 @@ class Mastermind:
 
                     if(blackfields==4):
                         Mastermind.won = True
+                        Mastermind.gamemode = "PvP"
                 
                     redfields = redfields - blackfields
                     erg = ["white","white","white","white"]
@@ -303,6 +465,7 @@ class Mastermind:
 
                     if(blackfields==4):
                         Mastermind.won = True
+                        Mastermind.gamemode = "PvP"
                 
                     redfields = redfields - blackfields
                     erg = ["white","white","white","white"]
@@ -334,6 +497,7 @@ class Mastermind:
                     
                     if(blackfields==4):
                         Mastermind.won = True
+                        Mastermind.gamemode = "PvP"
                 
                     redfields = redfields - blackfields
                     erg = ["white","white","white","white"]
@@ -365,6 +529,7 @@ class Mastermind:
                     
                     if(blackfields==4):
                         Mastermind.won = True
+                        Mastermind.gamemode = "PvP"
                 
                     redfields = redfields - blackfields
                     erg = ["white","white","white","white"]
@@ -396,6 +561,7 @@ class Mastermind:
 
                     if(blackfields==4):
                         Mastermind.won = True
+                        Mastermind.gamemode = "PvP"
                 
                     redfields = redfields - blackfields
                     erg = ["white","white","white","white"]
@@ -440,6 +606,7 @@ class Mastermind:
 
                     if(blackfields==4):
                         Mastermind.won = True
+                        Mastermind.gamemode = "PvP"
                     else:
                         Mastermind.notwon = True
 
@@ -449,8 +616,9 @@ class Mastermind:
 
 
             if(Mastermind.spielzug==1):
-                canvas1.create_text(400, 45,text= "Check", font=("Fixedsys", 17), tag="PvPTag1")
-                canvas1.tag_bind("PvPTag1", "<Button-1>", lambda x: row1())
+                if(Mastermind.gamemode!="CvP"):
+                    canvas1.create_text(400, 45,text= "Check", font=("Fixedsys", 17), tag="PvPTag1")
+                    canvas1.tag_bind("PvPTag1", "<Button-1>", lambda x: row1())
             else:
                 canvas1.create_oval(370, 10, 400, 40, fill=Mastermind.ccolor11 , outline='black', tag="control11")
                 canvas1.create_oval(410, 10, 440, 40, fill=Mastermind.ccolor12 , outline='black', tag="control12")
@@ -458,8 +626,6 @@ class Mastermind:
                 canvas1.create_oval(410, 50, 440, 80, fill=Mastermind.ccolor14 , outline='black', tag="control14")
 
                 
-                
-            
             #canvas1.bind("<Button-1>", save_posn)
     
             canvas2 = Canvas(self, width=canvaswidth, height=canvasheight, highlightthickness=canvasht, bg=canvasbg, highlightbackground=canvashbg)
@@ -488,6 +654,30 @@ class Mastermind:
                 checkverlaufandresult()
                 Mastermind.spielzug = 3
                 canvas()
+                if(Mastermind.gamemode=="CvP"):
+                    cc2=[Mastermind.ccolor21,Mastermind.ccolor22,Mastermind.ccolor23,Mastermind.ccolor24]
+                            
+                    zaehlerred = 0
+                    zaehlerblack = 0 
+                    for x in cc2:
+                        if(x=="red"):
+                            zaehlerred = zaehlerred+1
+                        elif(x=="black"):
+                            zaehlerblack = zaehlerblack+1
+                    if(zaehlerblack==0 and zaehlerred==0):
+                        Mastermind.poscolors.clear()
+                        Mastermind.poscolors.append("yellow")
+                        Mastermind.poscolors.append("blue")
+                        Mastermind.poscolors.append("purple")
+                        Mastermind.poscolors.append("orange")
+                    elif(zaehlerred == 1 and zaehlerblack == 0 or zaehlerred == 0 and zaehlerblack == 1):
+                        Mastermind.optioncolor.append("green")
+                        Mastermind.optioncolor.append("brown")
+                    elif(zaehlerred == 1 and zaehlerblack == 1 or zaehlerred == 2 and zaehlerblack == 0 or zaehlerred == 0 and zaehlerblack == 2):
+                        Mastermind.poscolors.append("green")
+                        Mastermind.poscolors.append("brown")    
+
+                    cvp3()
             
 
             if(Mastermind.spielzug==2):
@@ -525,6 +715,32 @@ class Mastermind:
                 checkverlaufandresult()
                 Mastermind.spielzug = 4
                 canvas()
+                if(Mastermind.gamemode=="CvP"):
+                    cc3=[Mastermind.ccolor31,Mastermind.ccolor32,Mastermind.ccolor33,Mastermind.ccolor34]
+                            
+                    zaehlerred = 0
+                    zaehlerblack = 0 
+                    for x in cc3:
+                        if(x=="red"):
+                            zaehlerred = zaehlerred+1
+                        elif(x=="black"):
+                            zaehlerblack = zaehlerblack+1
+                    if(zaehlerblack==0 and zaehlerred==0):
+                        Mastermind.poscolors.clear()
+                        Mastermind.poscolors.append("yellow")
+                        Mastermind.poscolors.append("blue")
+                        Mastermind.poscolors.append("green")
+                        Mastermind.poscolors.append("brown")
+                    elif(zaehlerred == 1 and zaehlerblack == 0 or zaehlerred == 0 and zaehlerblack == 1):
+                        Mastermind.optioncolor.append("pruple")
+                        Mastermind.optioncolor.append("orange")
+                    elif(zaehlerred == 1 and zaehlerblack == 1 or zaehlerred == 2 and zaehlerblack == 0 or zaehlerred == 0 and zaehlerblack == 2):
+                        Mastermind.poscolors.append("purple")
+                        Mastermind.poscolors.append("orange") 
+
+                    print(Mastermind.poscolors)   
+                    print(Mastermind.optioncolor)
+                    cvp4()   
 
             if(Mastermind.spielzug==3):
                 canvas3.create_text(400, 45,text= "Check", font=("Fixedsys", 17), tag="PvPTag3")
@@ -560,7 +776,10 @@ class Mastermind:
                 Mastermind.verlauf[3][3]=colortonumber(Mastermind.color44)
                 checkverlaufandresult()
                 Mastermind.spielzug = 5
+                
                 canvas()
+                if(Mastermind.gamemode=="CvP"):
+                    cvp5()
             
 
             if(Mastermind.spielzug==4):
@@ -599,6 +818,8 @@ class Mastermind:
                 checkverlaufandresult()
                 Mastermind.spielzug = 6
                 canvas()
+                if(Mastermind.gamemode=="CvP"):
+                    cvp6()
             
 
             if(Mastermind.spielzug==5):
@@ -636,6 +857,8 @@ class Mastermind:
                 checkverlaufandresult()
                 Mastermind.spielzug = 7
                 canvas()
+                if(Mastermind.gamemode=="CvP"):
+                    cvp7()
             
 
             if(Mastermind.spielzug==6):
@@ -702,7 +925,7 @@ class Mastermind:
 
             canvas8.create_line(340, 0, 340, 100, width=5)
 
-            if(Mastermind.gamemode=="PvP"):
+            if(Mastermind.gamemode=="PvP" or Mastermind.gamemode=="CvP"):
                 if(Mastermind.show_go):
                     canvas8.create_text(400, 45,text= "Go", font=("Fixedsys", 17), tag="PvPTag")
                     canvas8.tag_bind("PvPTag", "<Button-1>", lambda x: startpvp())
@@ -711,6 +934,7 @@ class Mastermind:
             ######################################################
                 
                 if(Mastermind.show_go):
+                    
                     Mastermind.result[0]=colortonumber(Mastermind.color91)
                     Mastermind.result[1]=colortonumber(Mastermind.color92)
                     Mastermind.result[2]=colortonumber(Mastermind.color93)
@@ -718,6 +942,10 @@ class Mastermind:
                     Mastermind.color91 = Mastermind.color92 = Mastermind.color93 = Mastermind.color94="white"
                     Mastermind.show_go = False
                     Mastermind.spielzug = 1
+                    if(Mastermind.gamemode=="CvP"):
+                        cvp1()
+                    else:    
+                        row1()
                     canvas()
                 
                 
@@ -766,22 +994,24 @@ class Mastermind:
                 
 
         def wonpup():
-            def backmain():
-                try:
-                    changewindow(0)
-                finally:
-                    wonpopup.destroy()
+            if(Mastermind.wonwindow):
+                Mastermind.wonwindow=False
+                def backmain():
+                    try:
+                        changewindow(0)
+                    finally:
+                        wonpopup.destroy()
 
-            wonpopup = Tk()
-            wonpopup.grid_rowconfigure(1, weight=1)
-            wonpopup.grid_columnconfigure(0, weight=1)
-            wonpopup.title("Glückwunsch") # set frame title
-            wonpopup.iconbitmap('img/icon.ico') # set frame icon
-            wonpopup.geometry("390x300+1050+500")   
-            title_lb = Label(wonpopup, text = "Glückwunsch, \nSie haben gewonnen!!!", font=("Fixedsys", 17))
-            title_lb.grid(row=0, column=0, padx=10, pady = 5, sticky="nwse")
-            back_bt = Button(wonpopup, text = "Back to\nMenu", font=("Fixedsys", 17), width = 15, height=5, bg="lightgreen",command=backmain)
-            back_bt.grid(row = 1, column = 0, pady = 10, sticky='s')
+                wonpopup = Tk()
+                wonpopup.grid_rowconfigure(1, weight=1)
+                wonpopup.grid_columnconfigure(0, weight=1)
+                wonpopup.title("Glückwunsch") # set frame title
+                wonpopup.iconbitmap('img/icon.ico') # set frame icon
+                wonpopup.geometry("390x300+1050+500")   
+                title_lb = Label(wonpopup, text = "Glückwunsch, \nSie haben gewonnen!!!", font=("Fixedsys", 17))
+                title_lb.grid(row=0, column=0, padx=10, pady = 5, sticky="nwse")
+                back_bt = Button(wonpopup, text = "Back to\nMenu", font=("Fixedsys", 17), width = 15, height=5, bg="lightgreen",command=backmain)
+                back_bt.grid(row = 1, column = 0, pady = 10, sticky='s')
 
             
         def notwonpup():
@@ -804,24 +1034,25 @@ class Mastermind:
 
 
         def popup(x,y,id):
-            check = False
-            popup = Tk()
-            # set weight of rows and columns
-            popup.grid_rowconfigure(8, weight=1)
-            popup.grid_columnconfigure(0, weight=1)
-            popup.title("Mastermind - Start") # set frame title
-            popup.iconbitmap('img/icon.ico') # set frame icon
-            popup.geometry("50x50+"+str(x)+"+"+str(y-80))
+            if(Mastermind.gamemode!="CvP" or Mastermind.spielzug==9):
+                check = False
+                popup = Tk()
+                # set weight of rows and columns
+                popup.grid_rowconfigure(8, weight=1)
+                popup.grid_columnconfigure(0, weight=1)
+                popup.title("Mastermind - Start") # set frame title
+                popup.iconbitmap('img/icon.ico') # set frame icon
+                popup.geometry("50x50+"+str(x)+"+"+str(y-80))
 
-            def setcolor1():
-                setcolor(color_cb.get(),id)
-                popup.destroy()
-                
-            color_cb = Combobox(popup, values=['Gelb', 'Blau', 'Grün', 'Braun', 'Lila', 'Orange'], state="readonly")
-            color_cb.current(0)
-            color_cb.grid(row=0, column=0, padx=5, pady = 5)
-            confirmcolor_bt = Button(popup, text = "OK", font=("Fixedsys", 14), width = 2, height=1, bg="lightgreen", command= setcolor1)
-            confirmcolor_bt.grid(row = 0, column = 1, pady = 5, sticky='s')
+                def setcolor1():
+                    setcolor(color_cb.get(),id)
+                    popup.destroy()
+                    
+                color_cb = Combobox(popup, values=['Gelb', 'Blau', 'Grün', 'Braun', 'Lila', 'Orange'], state="readonly")
+                color_cb.current(0)
+                color_cb.grid(row=0, column=0, padx=5, pady = 5)
+                confirmcolor_bt = Button(popup, text = "OK", font=("Fixedsys", 14), width = 2, height=1, bg="lightgreen", command= setcolor1)
+                confirmcolor_bt.grid(row = 0, column = 1, pady = 5, sticky='s')
             
         
         def setcolor(color,x):
