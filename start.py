@@ -11,6 +11,7 @@ class Mastermind:
     windowid=0
 
     wonwindow=True
+    notwonwindow = True
 
     color11 = color12 = color13 = color14 = 'white'
     ccolor11 = ccolor12 = ccolor13 = ccolor14 = 'white'
@@ -131,6 +132,7 @@ class Mastermind:
                 Mastermind.result = [0,0,0,0]
 
                 Mastermind.wonwindow = True
+                Mastermind.notwonwindow = True
 
                 Mastermind.gamemode = var.get()
                 print(str(Mastermind.gamemode))
@@ -944,8 +946,7 @@ class Mastermind:
                     Mastermind.spielzug = 1
                     if(Mastermind.gamemode=="CvP"):
                         cvp1()
-                    else:    
-                        row1()
+                    
                     canvas()
                 
                 
@@ -995,7 +996,7 @@ class Mastermind:
 
         def wonpup():
             if(Mastermind.wonwindow):
-                Mastermind.wonwindow=False
+                Mastermind.wonwindow = False
                 def backmain():
                     try:
                         changewindow(0)
@@ -1015,22 +1016,24 @@ class Mastermind:
 
             
         def notwonpup():
-            def backmain():
-                try:
-                    changewindow(0)
-                finally:
-                    notwonpopup.destroy()
+            if(Mastermind.notwonwindow):
+                Mastermind.notwonwindow = False
+                def backmain():
+                    try:
+                        changewindow(0)
+                    finally:
+                        notwonpopup.destroy()
 
-            notwonpopup = Tk()
-            notwonpopup.grid_rowconfigure(2, weight=1)
-            notwonpopup.grid_columnconfigure(0, weight=1)
-            notwonpopup.title("Verloren") # set frame title
-            notwonpopup.iconbitmap('img/icon.ico') # set frame icon
-            notwonpopup.geometry("390x300+1050+500")   
-            notwonpopup.title_lb = Label(notwonpopup, text = "Schade, leider \n nicht geschafft!", font=("Fixedsys", 17))
-            notwonpopup.title_lb.grid(row=0, column=0, padx=10, pady = 5, sticky="nwse")
-            notwonpopup.back_bt = Button(notwonpopup, text = "Back to\nMenu", font=("Fixedsys", 17), width = 15, height=5, bg="lightgreen",command=backmain)
-            notwonpopup.back_bt.grid(row = 2, column = 0, pady = 10, sticky='s')
+                notwonpopup = Tk()
+                notwonpopup.grid_rowconfigure(2, weight=1)
+                notwonpopup.grid_columnconfigure(0, weight=1)
+                notwonpopup.title("Verloren") # set frame title
+                notwonpopup.iconbitmap('img/icon.ico') # set frame icon
+                notwonpopup.geometry("390x300+1050+500")   
+                notwonpopup.title_lb = Label(notwonpopup, text = "Schade, leider \n nicht geschafft!", font=("Fixedsys", 17))
+                notwonpopup.title_lb.grid(row=0, column=0, padx=10, pady = 5, sticky="nwse")
+                notwonpopup.back_bt = Button(notwonpopup, text = "Back to\nMenu", font=("Fixedsys", 17), width = 15, height=5, bg="lightgreen",command=backmain)
+                notwonpopup.back_bt.grid(row = 2, column = 0, pady = 10, sticky='s')
 
 
         def popup(x,y,id):
