@@ -5,6 +5,7 @@ from tkinter import *
 from tkinter import messagebox
 import sys
 import random
+import time
 
 # 0=Gelb 1=Blau 2=Grün 3=Braun 4=Lila 5=Orange
 class Mastermind:
@@ -239,6 +240,7 @@ class Mastermind:
                 row1()
 
             def cvp2():
+                
                 Mastermind.color21="green"
                 Mastermind.color22="green"
                 Mastermind.color23="brown"
@@ -246,6 +248,7 @@ class Mastermind:
                 row2()
 
             def cvp3():
+                
                 Mastermind.color31="purple"
                 Mastermind.color32="purple"
                 Mastermind.color33="orange"
@@ -253,6 +256,7 @@ class Mastermind:
                 row3()
             
             def cvp4():
+                
                 if(len(Mastermind.poscolors)==4):
                     Mastermind.color41=Mastermind.poscolors[0]
                     Mastermind.color42=Mastermind.poscolors[0]
@@ -267,6 +271,7 @@ class Mastermind:
                 row4()
             
             def cvp5():
+                
                 cc4=[Mastermind.ccolor41,Mastermind.ccolor42,Mastermind.ccolor43,Mastermind.ccolor44]
                 zaehlerred = 0
                 zaehlerblack = 0 
@@ -319,6 +324,7 @@ class Mastermind:
                 row5() 
             
             def cvp6():
+                
                 cc5=[Mastermind.ccolor51,Mastermind.ccolor52,Mastermind.ccolor53,Mastermind.ccolor54]
                 zaehlerred = 0
                 zaehlerblack = 0 
