@@ -135,7 +135,6 @@ class Mastermind:
                 Mastermind.notwonwindow = True
 
                 Mastermind.gamemode = var.get()
-                print(str(Mastermind.gamemode))
                 Mastermind.won = False
                 Mastermind.verlauf = [[0 for x in range(4)] for y in range(7)] 
                 
@@ -232,7 +231,6 @@ class Mastermind:
 
             canvas1.create_line(340, 0, 340, 100, width=5)
             def cvp1():
-                print(Mastermind.result)
                 Mastermind.color11="yellow"
                 Mastermind.color12="yellow"
                 Mastermind.color13="blue"
@@ -259,88 +257,119 @@ class Mastermind:
                     Mastermind.color41=Mastermind.poscolors[0]
                     Mastermind.color42=Mastermind.poscolors[0]
                     Mastermind.color43=Mastermind.poscolors[1]
-                    Mastermind.color44=Mastermind.poscolors[1]
-
-                    
-                    
+                    Mastermind.color44=Mastermind.poscolors[1]                  
                 else:
-                    print()
+                    Mastermind.color41=Mastermind.poscolors[0]
+                    Mastermind.color42=Mastermind.poscolors[0]
+                    Mastermind.color43=Mastermind.poscolors[1]
+                    Mastermind.color44=Mastermind.poscolors[1]
                 
                 row4()
             
             def cvp5():
+                cc4=[Mastermind.ccolor41,Mastermind.ccolor42,Mastermind.ccolor43,Mastermind.ccolor44]
+                zaehlerred = 0
+                zaehlerblack = 0 
+                for x in cc4:
+                    if(x=="red"):
+                        zaehlerred = zaehlerred+1
+                    elif(x=="black"):
+                        zaehlerblack = zaehlerblack+1
                 if(len(Mastermind.poscolors)==4):
-                    cc4=[Mastermind.ccolor41,Mastermind.ccolor42,Mastermind.ccolor43,Mastermind.ccolor44]
-                    zaehlerred = 0
-                    zaehlerblack = 0 
-                    for x in cc4:
-                        if(x=="red"):
-                            zaehlerred = zaehlerred+1
-                        elif(x=="black"):
-                            zaehlerblack = zaehlerblack+1
                     if(zaehlerred==1 and zaehlerblack==1):
-                        print("111")
                         Mastermind.color51=Mastermind.poscolors[0]
                         Mastermind.color52=Mastermind.poscolors[0]
                         Mastermind.color53=Mastermind.poscolors[2]
                         Mastermind.color54=Mastermind.poscolors[2]
                     elif(zaehlerred==2 and zaehlerblack==0):
-                        print("222")
                         Mastermind.color51=Mastermind.poscolors[2]
                         Mastermind.color52=Mastermind.poscolors[2]
                         Mastermind.color53=Mastermind.poscolors[3]
                         Mastermind.color54=Mastermind.poscolors[3]
                         Mastermind.betterposcolors[0]=Mastermind.poscolors[1]
                         Mastermind.betterposcolors[3]=Mastermind.poscolors[0]
-                    elif(zaehlerred==0 and zaehlerblack==2):
-                        print("333")
+                    else:
                         Mastermind.color51=Mastermind.poscolors[2]
                         Mastermind.color52=Mastermind.poscolors[2]
                         Mastermind.color53=Mastermind.poscolors[3]
                         Mastermind.color54=Mastermind.poscolors[3]
                         Mastermind.betterposcolors[0]=Mastermind.poscolors[0]
                         Mastermind.betterposcolors[3]=Mastermind.poscolors[1]
-                    
+                else:
+                    if(zaehlerred+zaehlerblack==2):
+                        print(Mastermind.optioncolor)
+                        Mastermind.poscolors.append(Mastermind.optioncolor[0])
+                        Mastermind.poscolors.append(Mastermind.optioncolor[1])
+                        Mastermind.color51=Mastermind.poscolors[0]
+                        Mastermind.color52=Mastermind.poscolors[1]
+                        Mastermind.color53=Mastermind.poscolors[2]
+                        Mastermind.color54=Mastermind.poscolors[3]
+                    elif(zaehlerred+zaehlerblack==0):
+                        Mastermind.poscolors.append(Mastermind.optioncolor[2])
+                        Mastermind.poscolors.append(Mastermind.optioncolor[3])
+                        Mastermind.color51=Mastermind.poscolors[0]
+                        Mastermind.color52=Mastermind.poscolors[1]
+                        Mastermind.color53=Mastermind.poscolors[2]
+                        Mastermind.color54=Mastermind.poscolors[3]
+                    else:
+                        Mastermind.color51=Mastermind.poscolors[0]
+                        Mastermind.color52=Mastermind.poscolors[0]
+                        Mastermind.color53=Mastermind.poscolors[2]
+                        Mastermind.color54=Mastermind.poscolors[2]
                 row5() 
             
             def cvp6():
+                cc5=[Mastermind.ccolor51,Mastermind.ccolor52,Mastermind.ccolor53,Mastermind.ccolor54]
+                zaehlerred = 0
+                zaehlerblack = 0 
+                for x in cc5:
+                    if(x=="red"):
+                        zaehlerred = zaehlerred+1
+                    elif(x=="black"):
+                        zaehlerblack = zaehlerblack+1
                 if(len(Mastermind.poscolors)==4):
+                    print(str(zaehlerred)+ "  wddswd  "+ str(zaehlerblack))
                     
-                    cc5=[Mastermind.ccolor51,Mastermind.ccolor52,Mastermind.ccolor53,Mastermind.ccolor54]
-                    zaehlerred = 0
-                    zaehlerblack = 0 
-                    for x in cc5:
-                        if(x=="red"):
-                            zaehlerred = zaehlerred+1
-                        elif(x=="black"):
-                            zaehlerblack = zaehlerblack+1
                     if(Mastermind.betterposcolors[0]==""):
-                        print("Hallo1")
-                        print(str(zaehlerblack) + "  " + str(zaehlerred))
                         if(zaehlerred==2 and zaehlerblack==0):
                             Mastermind.betterposcolors[0]=Mastermind.poscolors[2]
                             Mastermind.betterposcolors[2]=Mastermind.poscolors[0]
                             Mastermind.betterposcolors[3]=Mastermind.poscolors[1]
                             Mastermind.betterposcolors[1]=Mastermind.poscolors[3]
-                        elif(zaehlerred==0 and zaehlerblack==2):
+                        else:
                             Mastermind.betterposcolors[0]=Mastermind.poscolors[0]
                             Mastermind.betterposcolors[2]=Mastermind.poscolors[2]
                             Mastermind.betterposcolors[1]=Mastermind.poscolors[1]
                             Mastermind.betterposcolors[3]=Mastermind.poscolors[3]
                     else:
-                        print("Hallo2")
+                        print(str(zaehlerred)+ "  swd  "+ str(zaehlerblack))
                         if(zaehlerred==2 and zaehlerblack==0):
                             Mastermind.betterposcolors[1]=Mastermind.poscolors[3]
                             Mastermind.betterposcolors[3]=Mastermind.poscolors[2]
-                        elif(zaehlerred==0 and zaehlerblack==2):
+                        else:
                             Mastermind.betterposcolors[3]=Mastermind.poscolors[3]
                             Mastermind.betterposcolors[1]=Mastermind.poscolors[2]
-                    print(Mastermind.poscolors)
-                    print(Mastermind.betterposcolors)
                     Mastermind.color61=Mastermind.betterposcolors[0]
                     Mastermind.color62=Mastermind.betterposcolors[1]
                     Mastermind.color63=Mastermind.betterposcolors[2]
                     Mastermind.color64=Mastermind.betterposcolors[3]
+                else:
+                    print(str(zaehlerred)+ "  "+ str(zaehlerblack))
+                    if(zaehlerred+zaehlerblack==0):
+                        Mastermind.poscolors.append(Mastermind.poscolors[1])
+                        Mastermind.poscolors.append(Mastermind.poscolors[3])
+                        Mastermind.color61=Mastermind.poscolors[0]
+                        Mastermind.color62=Mastermind.poscolors[1]
+                        Mastermind.color63=Mastermind.poscolors[2]
+                        Mastermind.color64=Mastermind.poscolors[3]
+                    else:
+                        Mastermind.poscolors.append(Mastermind.poscolors[0])
+                        Mastermind.poscolors.append(Mastermind.poscolors[2])
+                        Mastermind.color61=Mastermind.poscolors[0]
+                        Mastermind.color62=Mastermind.poscolors[1]
+                        Mastermind.color63=Mastermind.poscolors[2]
+                        Mastermind.color64=Mastermind.poscolors[3]
+
                 row6()
 
             def cvp7():
@@ -740,8 +769,6 @@ class Mastermind:
                         Mastermind.poscolors.append("purple")
                         Mastermind.poscolors.append("orange") 
 
-                    print(Mastermind.poscolors)   
-                    print(Mastermind.optioncolor)
                     cvp4()   
 
             if(Mastermind.spielzug==3):
