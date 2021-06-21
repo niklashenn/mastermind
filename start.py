@@ -6,6 +6,10 @@ from tkinter import messagebox
 import sys
 import random
 import time
+import webbrowser
+from helper.color_to_number import *
+from helper.number_to_color import *
+# from helper.set_color import *
 
 # 0=Gelb 1=Blau 2=Grün 3=Braun 4=Lila 5=Orange
 class Mastermind:
@@ -62,6 +66,7 @@ class Mastermind:
         self = Tk()
         self.title("Mastermind - Start") # set frame title
         self.iconbitmap('img/icon.ico') # set frame icon
+
 
         def clear_frame():
             for widgets in self.winfo_children():
@@ -155,10 +160,39 @@ class Mastermind:
                 else:
                     messagebox.showinfo("Select gamemode", "Please select a gamemode!")
                 
-            
+            def callback(url):
+                webbrowser.open_new_tab(url)
+
+
+            # def motion(event):
+                #x, y = event.x, event.y
+                #print('{}, {}'.format(x, y))
+
+            #self.bind('<Motion>', motion)
+
+
+            # Open info popup 
             def game_info():
-                messagebox.showinfo("How to play", "Sie müssen einen Farbencode festlegen, welchen der andere Spieler erraten muss.\nDabei darf jede Farbe nur einmal verwendet werden.\n")
-            
+                global message_window
+                message_window = Toplevel()
+                message_window.geometry("400x150+"+str(self.winfo_pointerx())+"+"+str(self.winfo_pointery()))
+                message_window.title("How to play")
+                message_window.iconbitmap('img/icon.ico')
+
+                label_anleitung = Label(message_window, text="Bitte wählen sie jede Farbe nur einmal!")
+                label_anleitung.pack()
+
+                label_anleitung2 = Label(message_window, text="Ausfühtliche Anleitung von Mastermind:")
+                label_anleitung2.pack()
+
+                link_anleitung = Label(message_window, text="Masterind Anleitung", fg="blue", cursor="hand2")
+                link_anleitung.pack()
+                link_anleitung.bind("<Button-1>", lambda e: callback("https://www.spielregeln-spielanleitungen.de/spiel/mastermind-superhirn/"))
+
+                ok_button = Button(message_window, text="OK", width=10, relief=RAISED, bd=2, command=message_window.destroy)
+                ok_button.pack(pady=10, side=BOTTOM)
+
+
             info_bt = Button(self, text = "Info", font=("Fixedsys", 14), width = 10, height=5, bg="lightgreen", command=game_info)
             info_bt.grid(row = 5, column = 0, pady = 5)
             
@@ -183,7 +217,7 @@ class Mastermind:
                 Mastermind.spielzug = 9
 
             
-            self.geometry("650x950+900+300")
+            self.geometry("650x950+"+str(self.winfo_pointerx()-325)+"+"+str(self.winfo_pointery()-475))
             self.title("Mastermind")
 
             self.title_lb = Label(self, text = "Mastermind", width = 20, font=("Fixedsys", 40))
@@ -981,38 +1015,37 @@ class Mastermind:
                     
                     canvas()
                 
-                
+        
 
-
                 
-        def colortonumber(color):
-            if(color=="yellow"):
-                return 0
-            if(color=="blue"):
-                return 1
-            if(color=="green"):
-                return 2
-            if(color=="brown"):
-                return 3
-            if(color=="purple"):
-                return 4
-            if(color=="orange"):
-                return 5
+        # def colortonumber(color):
+            # if(color=="yellow"):
+            #     return 0
+            # if(color=="blue"):
+            #     return 1
+            # if(color=="green"):
+            #     return 2
+            # if(color=="brown"):
+            #     return 3
+            # if(color=="purple"):
+            #     return 4
+            # if(color=="orange"):
+            #     return 5
                 
         
-        def numbertocolor(number):
-            if(number==0):
-                return "yellow"
-            if(number==1):
-                return "blue"
-            if(number==2):
-                return "green"
-            if(number==3):
-                return "brown"
-            if(number==4):
-                return "purple"
-            if(number==5):
-                return "orange"
+        # def numbertocolor(number):
+        #     if(number==0):
+        #         return "yellow"
+        #     if(number==1):
+        #         return "blue"
+        #     if(number==2):
+        #         return "green"
+        #     if(number==3):
+        #         return "brown"
+        #     if(number==4):
+        #         return "purple"
+        #     if(number==5):
+        #         return "orange"
             
 
 # 0=Gelb 1=Blau 2=Grün 3=Braun 4=Lila 5=Orange
@@ -1040,7 +1073,7 @@ class Mastermind:
                 wonpopup.grid_columnconfigure(0, weight=1)
                 wonpopup.title("Glückwunsch") # set frame title
                 wonpopup.iconbitmap('img/icon.ico') # set frame icon
-                wonpopup.geometry("390x300+1050+500")   
+                wonpopup.geometry("390x300+"+str(self.winfo_pointerx()-190)+"+"+str(self.winfo_pointery()-150))   
                 title_lb = Label(wonpopup, text = "Glückwunsch, \nSie haben gewonnen!!!", font=("Fixedsys", 17))
                 title_lb.grid(row=0, column=0, padx=10, pady = 5, sticky="nwse")
                 back_bt = Button(wonpopup, text = "Back to\nMenu", font=("Fixedsys", 17), width = 15, height=5, bg="lightgreen",command=backmain)
@@ -1061,7 +1094,7 @@ class Mastermind:
                 notwonpopup.grid_columnconfigure(0, weight=1)
                 notwonpopup.title("Verloren") # set frame title
                 notwonpopup.iconbitmap('img/icon.ico') # set frame icon
-                notwonpopup.geometry("390x300+1050+500")   
+                notwonpopup.geometry("390x300+"+str(self.winfo_pointerx()-190)+"+"+str(self.winfo_pointery()-150))   
                 notwonpopup.title_lb = Label(notwonpopup, text = "Schade, leider \n nicht geschafft!", font=("Fixedsys", 17))
                 notwonpopup.title_lb.grid(row=0, column=0, padx=10, pady = 5, sticky="nwse")
                 notwonpopup.back_bt = Button(notwonpopup, text = "Back to\nMenu", font=("Fixedsys", 17), width = 15, height=5, bg="lightgreen",command=backmain)
@@ -1175,6 +1208,7 @@ class Mastermind:
                 Mastermind.color93 = color
             if(x==94):
                 Mastermind.color94 = color
+
             canvas()  
             
 
