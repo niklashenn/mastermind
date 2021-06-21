@@ -663,7 +663,6 @@ class Mastermind:
                 canvas1.create_oval(410, 50, 440, 80, fill=Mastermind.ccolor14 , outline='black', tag="control14")
 
                 
-            #canvas1.bind("<Button-1>", save_posn)
     
             canvas2 = Canvas(self, width=canvaswidth, height=canvasheight, highlightthickness=canvasht, bg=canvasbg, highlightbackground=canvashbg)
             canvas2.grid(row=2, column=0, padx=canvaspadx, pady=canvaspady)
