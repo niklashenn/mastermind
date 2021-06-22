@@ -9,7 +9,6 @@ import time
 import webbrowser
 from helper.color_to_number import colortonumber
 from helper.number_to_color import numbertocolor
-# from helper.set_color import *
 
 # 0=Gelb 1=Blau 2=Grün 3=Braun 4=Lila 5=Orange
 class Mastermind:
@@ -61,17 +60,17 @@ class Mastermind:
     betterposcolors = ["","","",""]
     colors_list = ["white", "white", "white", "white"]
     
-    def __init__(self):
+    def __init__(root):
         
         #####################################################################
-        self = Tk() # create frame
-        self.title("Mastermind - Start") # set frame title
-        self.iconbitmap('img/icon.ico') # set frame icon
+        root = Tk() # create frame
+        root.title("Mastermind - Start") # set frame title
+        root.iconbitmap('img/icon.ico') # set frame icon
 
 
         # function for deleting widgets of frame
         def clear_frame():
-            for widgets in self.winfo_children():
+            for widgets in root.winfo_children():
                 widgets.destroy()
 
         # function to switch betweeen the main menu window and the game window
@@ -85,32 +84,32 @@ class Mastermind:
         ##########################################################################################################################################################################################
         def windowmain():
             
-            self.geometry("400x700") # set frame size
+            root.geometry("400x700") # set frame size
             # set weight of rows and columns
-            self.grid_rowconfigure(6, weight=1)
-            self.grid_columnconfigure(0, weight=1)
+            root.grid_rowconfigure(6, weight=1)
+            root.grid_columnconfigure(0, weight=1)
         
             # create title label
-            self.title_lb = Label(self, text = "Mastermind", width = 20, font=("Fixedsys", 40))
-            self.title_lb.grid(row = 0, column = 0, pady = 10, sticky='nwse')
+            root.title_lb = Label(root, text = "Mastermind", width = 20, font=("Fixedsys", 40))
+            root.title_lb.grid(row = 0, column = 0, pady = 10, sticky='nwse')
 
             # create gameart label
-            self.gamemode_lb = Label(self, text = "Gamemode", width = 20, font=("Fixedsys", 17))
-            self.gamemode_lb.grid(row = 1, column = 0, padx=5, sticky='nwse')
+            root.gamemode_lb = Label(root, text = "Gamemode", width = 20, font=("Fixedsys", 17))
+            root.gamemode_lb.grid(row = 1, column = 0, padx=5, sticky='nwse')
 
             # create radio button for Plaver vs Computer
             var = StringVar()
-            player_vs_computer_rb = Radiobutton(self, text="Player vs Computer", padx = 50, variable=var, value="PvC")
+            player_vs_computer_rb = Radiobutton(root, text="Player vs Computer", padx = 50, variable=var, value="PvC")
             #player_vs_computer_rb.deselect()
             player_vs_computer_rb.grid(row = 2, column = 0, padx=5, sticky='nwse')
 
             # create radio button for Player vs Player
-            player_vs_player_rb = Radiobutton(self, text="Player vs Player", padx = 50, variable=var, value="PvP")
+            player_vs_player_rb = Radiobutton(root, text="Player vs Player", padx = 50, variable=var, value="PvP")
             #player_vs_player_rb.select()
             player_vs_player_rb.grid(row = 3, column = 0, padx=5, sticky='nwse')
 
             # create radio button for Computer vs Player
-            computer_vs_player_rb = Radiobutton(self, text="Computer vs Player", padx = 50, variable=var, value="CvP")
+            computer_vs_player_rb = Radiobutton(root, text="Computer vs Player", padx = 50, variable=var, value="CvP")
             #computer_vs_player_rb.select()
             computer_vs_player_rb.grid(row = 4, column = 0, padx=5, sticky='nwse')
 
@@ -174,7 +173,7 @@ class Mastermind:
             def game_info():
                 global message_window
                 message_window = Toplevel()
-                message_window.geometry("400x150+"+str(self.winfo_pointerx())+"+"+str(self.winfo_pointery()))
+                message_window.geometry("400x150+"+str(root.winfo_pointerx())+"+"+str(root.winfo_pointery()))
                 message_window.title("How to play")
                 message_window.iconbitmap('img/icon.ico')
 
@@ -194,11 +193,11 @@ class Mastermind:
 
 
             # create info button
-            info_bt = Button(self, text = "Info", font=("Fixedsys", 14), width = 10, height=5, bg="lightgreen", command=game_info)
+            info_bt = Button(root, text = "Info", font=("Fixedsys", 14), width = 10, height=5, bg="lightgreen", command=game_info)
             info_bt.grid(row = 5, column = 0, pady = 5)
             
             # create play button
-            play_bt = Button(self, text = "Play", font=("Fixedsys", 14), width = 15, height=5, bg="lightgreen", command=lambda :getgamemode())
+            play_bt = Button(root, text = "Play", font=("Fixedsys", 14), width = 15, height=5, bg="lightgreen", command=lambda :getgamemode())
             play_bt.grid(row = 6, column = 0, pady = 5, sticky='s')
 
         ##########################################################################################################################################################################################
@@ -223,11 +222,11 @@ class Mastermind:
 
             
             # create game window
-            self.geometry("650x950+"+str(self.winfo_pointerx()-325)+"+"+str(self.winfo_pointery()-475))
-            self.title("Mastermind")
+            root.geometry("650x950+"+str(root.winfo_pointerx()-325)+"+"+str(root.winfo_pointery()-475))
+            root.title("Mastermind")
 
-            self.title_lb = Label(self, text = "Mastermind", width = 20, font=("Fixedsys", 40))
-            self.title_lb.grid(row = 0, column = 0, pady = 10, sticky='nwse')
+            root.title_lb = Label(root, text = "Mastermind", width = 20, font=("Fixedsys", 40))
+            root.title_lb.grid(row = 0, column = 0, pady = 10, sticky='nwse')
             canvas()
             
         def canvas():
@@ -260,7 +259,7 @@ class Mastermind:
                 
                 
             # create canvas for the first line
-            canvas1 = Canvas(self, width=canvaswidth, height=canvasheight, highlightthickness=canvasht, bg=canvasbg, highlightbackground=canvashbg)
+            canvas1 = Canvas(root, width=canvaswidth, height=canvasheight, highlightthickness=canvasht, bg=canvasbg, highlightbackground=canvashbg)
             canvas1.grid(row=1, column=0, padx=canvaspadx, pady=canvaspady)
 
             # create 4 ovals with white background and black border, where the color will be selected later
@@ -275,6 +274,7 @@ class Mastermind:
 
             # create a vertical line to seperate the two areas of the game
             canvas1.create_line(340, 0, 340, 100, width=5)
+            
             def cvp1():
                 Mastermind.color11="yellow"
                 Mastermind.color12="yellow"
@@ -708,7 +708,7 @@ class Mastermind:
 
                 
             # create canvas for the second line
-            canvas2 = Canvas(self, width=canvaswidth, height=canvasheight, highlightthickness=canvasht, bg=canvasbg, highlightbackground=canvashbg)
+            canvas2 = Canvas(root, width=canvaswidth, height=canvasheight, highlightthickness=canvasht, bg=canvasbg, highlightbackground=canvashbg)
             canvas2.grid(row=2, column=0, padx=canvaspadx, pady=canvaspady)
 
             # create 4 ovals with white background and black border, where the color will be selected later
@@ -770,7 +770,7 @@ class Mastermind:
             
 
             # create canvas for the third line
-            canvas3 = Canvas(self, width=canvaswidth, height=canvasheight,  highlightthickness=canvasht, bg=canvasbg, highlightbackground=canvashbg)
+            canvas3 = Canvas(root, width=canvaswidth, height=canvasheight,  highlightthickness=canvasht, bg=canvasbg, highlightbackground=canvashbg)
             canvas3.grid(row=3, column=0, padx=canvaspadx, pady=canvaspady)
 
             # create 4 ovals with white background and black border, where the color will be selected later
@@ -830,7 +830,7 @@ class Mastermind:
             
 
             # create canvas for the fourth line
-            canvas4 = Canvas(self, width=canvaswidth, height=canvasheight, highlightthickness=canvasht, bg=canvasbg, highlightbackground=canvashbg)
+            canvas4 = Canvas(root, width=canvaswidth, height=canvasheight, highlightthickness=canvasht, bg=canvasbg, highlightbackground=canvashbg)
             canvas4.grid(row=4, column=0, padx=canvaspadx, pady=canvaspady)
 
             # create 4 ovals with white background and black border, where the color will be selected later
@@ -870,7 +870,7 @@ class Mastermind:
             
 
             # create canvas for the fifth line
-            canvas5 = Canvas(self, width=canvaswidth, height=canvasheight, highlightthickness=canvasht, bg=canvasbg, highlightbackground=canvashbg)
+            canvas5 = Canvas(root, width=canvaswidth, height=canvasheight, highlightthickness=canvasht, bg=canvasbg, highlightbackground=canvashbg)
             canvas5.grid(row=5, column=0, padx=canvaspadx, pady=canvaspady)
 
             # create 4 ovals with white background and black border, where the color will be selected later
@@ -910,7 +910,7 @@ class Mastermind:
             
 
             # create canvas for the sixth line
-            canvas6 = Canvas(self, width=canvaswidth, height=canvasheight, highlightthickness=canvasht, bg=canvasbg, highlightbackground=canvashbg)
+            canvas6 = Canvas(root, width=canvaswidth, height=canvasheight, highlightthickness=canvasht, bg=canvasbg, highlightbackground=canvashbg)
             canvas6.grid(row=6, column=0, padx=canvaspadx, pady=canvaspady)
 
             # create canvas for the fifth line
@@ -949,7 +949,7 @@ class Mastermind:
             
 
             # create canvas for the seventh line
-            canvas7 = Canvas(self, width=canvaswidth, height=canvasheight, highlightthickness=canvasht, bg=canvasbg, highlightbackground=canvashbg)
+            canvas7 = Canvas(root, width=canvaswidth, height=canvasheight, highlightthickness=canvasht, bg=canvasbg, highlightbackground=canvashbg)
             canvas7.grid(row=7, column=0, padx=canvaspadx, pady=canvaspady)
 
             # create canvas for the fifth line
@@ -986,7 +986,7 @@ class Mastermind:
             
             
             # create canvas for the eighth line
-            canvas8 = Canvas(self, width=canvaswidth, height=canvasheight, highlightthickness=canvasht, bg=canvasbg, highlightbackground=canvashbg)
+            canvas8 = Canvas(root, width=canvaswidth, height=canvasheight, highlightthickness=canvasht, bg=canvasbg, highlightbackground=canvashbg)
             canvas8.grid(row=9, column=0, padx=canvaspadx, pady=canvaspady*5)
 
             # create canvas for the fifth line
@@ -1039,7 +1039,7 @@ class Mastermind:
         # function create color selection window at current mouse position
         def save_posn(x):
             if(Mastermind.spielzug*10<x and Mastermind.spielzug*10+5>x):
-                color = popup(self.winfo_pointerx(), self.winfo_pointery(),x)
+                color = popup(root.winfo_pointerx(), root.winfo_pointery(),x)
 
                 
         # function to show the won notification popup
@@ -1059,7 +1059,7 @@ class Mastermind:
                 wonpopup.grid_columnconfigure(0, weight=1)
                 wonpopup.title("Glückwunsch") # set frame title
                 wonpopup.iconbitmap('img/icon.ico') # set frame icon
-                wonpopup.geometry("390x300+"+str(self.winfo_pointerx()-190)+"+"+str(self.winfo_pointery()-150))   
+                wonpopup.geometry("390x300+"+str(root.winfo_pointerx()-190)+"+"+str(root.winfo_pointery()-150))   
                 # create won message
                 title_lb = Label(wonpopup, text = "Glückwunsch, \nSie haben gewonnen!!!", font=("Fixedsys", 17))
                 title_lb.grid(row=0, column=0, padx=10, pady = 5, sticky="nwse")
@@ -1085,7 +1085,7 @@ class Mastermind:
                 notwonpopup.grid_columnconfigure(0, weight=1)
                 notwonpopup.title("Verloren") # set frame title
                 notwonpopup.iconbitmap('img/icon.ico') # set frame icon
-                notwonpopup.geometry("390x300+"+str(self.winfo_pointerx()-190)+"+"+str(self.winfo_pointery()-150))   
+                notwonpopup.geometry("390x300+"+str(root.winfo_pointerx()-190)+"+"+str(root.winfo_pointery()-150))   
                 # create not won message
                 title_lb = Label(notwonpopup, text = "Schade, leider \n nicht geschafft!", font=("Fixedsys", 17))
                 title_lb.grid(row=0, column=0, padx=10, pady = 5, sticky="nwse")
@@ -1215,7 +1215,7 @@ class Mastermind:
         windowmain()
         
         # show everything
-        self.mainloop()
+        root.mainloop()
         
         
 # create new start window
