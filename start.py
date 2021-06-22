@@ -103,18 +103,18 @@ class Mastermind:
             # create radio button for Plaver vs Computer
             var = StringVar()
             player_vs_computer_rb = Radiobutton(root, text="Player vs Computer", padx = 50, variable=var, value="PvC")
-            #player_vs_computer_rb.deselect()
             player_vs_computer_rb.grid(row = 2, column = 0, padx=5, sticky='nwse')
 
             # create radio button for Player vs Player
             player_vs_player_rb = Radiobutton(root, text="Player vs Player", padx = 50, variable=var, value="PvP")
-            #player_vs_player_rb.select()
             player_vs_player_rb.grid(row = 3, column = 0, padx=5, sticky='nwse')
 
             # create radio button for Computer vs Player
             computer_vs_player_rb = Radiobutton(root, text="Computer vs Player", padx = 50, variable=var, value="CvP")
-            #computer_vs_player_rb.select()
             computer_vs_player_rb.grid(row = 4, column = 0, padx=5, sticky='nwse')
+
+            # deselect all radiobuttons by default
+            var.set(None)
 
             def getgamemode():
                 # reset all relevant variables
