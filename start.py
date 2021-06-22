@@ -1032,44 +1032,11 @@ class Mastermind:
                     
                     canvas()
                 
-        
-
-                
-        # def colortonumber(color):
-            # if(color=="yellow"):
-            #     return 0
-            # if(color=="blue"):
-            #     return 1
-            # if(color=="green"):
-            #     return 2
-            # if(color=="brown"):
-            #     return 3
-            # if(color=="purple"):
-            #     return 4
-            # if(color=="orange"):
-            #     return 5
-                
-        
-        # def numbertocolor(number):
-        #     if(number==0):
-        #         return "yellow"
-        #     if(number==1):
-        #         return "blue"
-        #     if(number==2):
-        #         return "green"
-        #     if(number==3):
-        #         return "brown"
-        #     if(number==4):
-        #         return "purple"
-        #     if(number==5):
-        #         return "orange"
-            
 
 # 0=Gelb 1=Blau 2=Grün 3=Braun 4=Lila 5=Orange
+    
 
-
-        
-
+        # function create color selection window at current mouse position
         def save_posn(x):
             if(Mastermind.spielzug*10<x and Mastermind.spielzug*10+5>x):
                 color = popup(self.winfo_pointerx(), self.winfo_pointery(),x)
