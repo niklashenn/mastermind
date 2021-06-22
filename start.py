@@ -259,7 +259,14 @@ class Mastermind:
                 # show not won notification popup
                 notwonpup()
                 
-                
+
+            #frame_canvas = Frame(root)
+            #frame_canvas.grid(row=1, column=0, sticky='nwse')
+
+            #scrollbar = Scrollbar(frame_canvas, orient="vertical", command=canvas.yview)
+            #scrollbar.grid(column=1, sticky=NS)
+
+
             # create canvas for the first line
             canvas1 = Canvas(root, width=canvaswidth, height=canvasheight, highlightthickness=canvasht, bg=canvasbg, highlightbackground=canvashbg)
             canvas1.grid(row=1, column=0, padx=canvaspadx, pady=canvaspady)
