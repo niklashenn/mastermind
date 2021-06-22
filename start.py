@@ -7,8 +7,10 @@ import sys
 import random
 import time
 import webbrowser
-from helper.color_to_number import colortonumber
-from helper.number_to_color import numbertocolor
+from helper import color_to_number
+from helper import number_to_color
+
+sys.path.insert(0, '/helper/')
 
 # 0=Gelb 1=Blau 2=Grün 3=Braun 4=Lila 5=Orange
 class Mastermind:
@@ -241,19 +243,19 @@ class Mastermind:
             
             if(Mastermind.won==True): # if won
                 # show the color code at the bottom
-                Mastermind.color91 = numbertocolor(Mastermind.result[0])
-                Mastermind.color92 = numbertocolor(Mastermind.result[1])
-                Mastermind.color93 = numbertocolor(Mastermind.result[2])
-                Mastermind.color94 = numbertocolor(Mastermind.result[3])
+                Mastermind.color91 = number_to_color.numbertocolor(Mastermind.result[0])
+                Mastermind.color92 = number_to_color.numbertocolor(Mastermind.result[1])
+                Mastermind.color93 = number_to_color.numbertocolor(Mastermind.result[2])
+                Mastermind.color94 = number_to_color.numbertocolor(Mastermind.result[3])
                 Mastermind.spielzug = 100
                 # show won notification popup
                 wonpup()
             if(Mastermind.notwon==True): # if not won
                 # show the color code at the bottom
-                Mastermind.color91 = numbertocolor(Mastermind.result[0])
-                Mastermind.color92 = numbertocolor(Mastermind.result[1])
-                Mastermind.color93 = numbertocolor(Mastermind.result[2])
-                Mastermind.color94 = numbertocolor(Mastermind.result[3])
+                Mastermind.color91 = number_to_color.numbertocolor(Mastermind.result[0])
+                Mastermind.color92 = number_to_color.numbertocolor(Mastermind.result[1])
+                Mastermind.color93 = number_to_color.numbertocolor(Mastermind.result[2])
+                Mastermind.color94 = number_to_color.numbertocolor(Mastermind.result[3])
                 # show not won notification popup
                 notwonpup()
                 
@@ -431,10 +433,10 @@ class Mastermind:
                 row7()
 
             def row1():
-                Mastermind.verlauf[0][0]=colortonumber(Mastermind.color11)
-                Mastermind.verlauf[0][1]=colortonumber(Mastermind.color12)
-                Mastermind.verlauf[0][2]=colortonumber(Mastermind.color13)
-                Mastermind.verlauf[0][3]=colortonumber(Mastermind.color14)
+                Mastermind.verlauf[0][0]=color_to_number.colortonumber(Mastermind.color11)
+                Mastermind.verlauf[0][1]=color_to_number.colortonumber(Mastermind.color12)
+                Mastermind.verlauf[0][2]=color_to_number.colortonumber(Mastermind.color13)
+                Mastermind.verlauf[0][3]=color_to_number.colortonumber(Mastermind.color14)
                 checkverlaufandresult()
                 Mastermind.spielzug = 2
                 canvas()
@@ -726,10 +728,10 @@ class Mastermind:
 
 
             def row2():
-                Mastermind.verlauf[1][0]=colortonumber(Mastermind.color21)
-                Mastermind.verlauf[1][1]=colortonumber(Mastermind.color22)
-                Mastermind.verlauf[1][2]=colortonumber(Mastermind.color23)
-                Mastermind.verlauf[1][3]=colortonumber(Mastermind.color24)
+                Mastermind.verlauf[1][0]=color_to_number.colortonumber(Mastermind.color21)
+                Mastermind.verlauf[1][1]=color_to_number.colortonumber(Mastermind.color22)
+                Mastermind.verlauf[1][2]=color_to_number.colortonumber(Mastermind.color23)
+                Mastermind.verlauf[1][3]=color_to_number.colortonumber(Mastermind.color24)
                 checkverlaufandresult()
                 Mastermind.spielzug = 3
                 canvas()
@@ -787,10 +789,10 @@ class Mastermind:
             canvas3.create_line(340, 0, 340, 100, width=5)
             
             def row3():
-                Mastermind.verlauf[2][0]=colortonumber(Mastermind.color31)
-                Mastermind.verlauf[2][1]=colortonumber(Mastermind.color32)
-                Mastermind.verlauf[2][2]=colortonumber(Mastermind.color33)
-                Mastermind.verlauf[2][3]=colortonumber(Mastermind.color34)
+                Mastermind.verlauf[2][0]=color_to_number.colortonumber(Mastermind.color31)
+                Mastermind.verlauf[2][1]=color_to_number.colortonumber(Mastermind.color32)
+                Mastermind.verlauf[2][2]=color_to_number.colortonumber(Mastermind.color33)
+                Mastermind.verlauf[2][3]=color_to_number.colortonumber(Mastermind.color34)
                 checkverlaufandresult()
                 Mastermind.spielzug = 4
                 canvas()
@@ -847,10 +849,10 @@ class Mastermind:
             canvas4.create_line(340, 0, 340, 100, width=5)
 
             def row4():
-                Mastermind.verlauf[3][0]=colortonumber(Mastermind.color41)
-                Mastermind.verlauf[3][1]=colortonumber(Mastermind.color42)
-                Mastermind.verlauf[3][2]=colortonumber(Mastermind.color43)
-                Mastermind.verlauf[3][3]=colortonumber(Mastermind.color44)
+                Mastermind.verlauf[3][0]=color_to_number.colortonumber(Mastermind.color41)
+                Mastermind.verlauf[3][1]=color_to_number.colortonumber(Mastermind.color42)
+                Mastermind.verlauf[3][2]=color_to_number.colortonumber(Mastermind.color43)
+                Mastermind.verlauf[3][3]=color_to_number.colortonumber(Mastermind.color44)
                 checkverlaufandresult()
                 Mastermind.spielzug = 5
                 
@@ -888,10 +890,10 @@ class Mastermind:
 
 
             def row5():
-                Mastermind.verlauf[4][0]=colortonumber(Mastermind.color51)
-                Mastermind.verlauf[4][1]=colortonumber(Mastermind.color52)
-                Mastermind.verlauf[4][2]=colortonumber(Mastermind.color53)
-                Mastermind.verlauf[4][3]=colortonumber(Mastermind.color54)
+                Mastermind.verlauf[4][0]=color_to_number.colortonumber(Mastermind.color51)
+                Mastermind.verlauf[4][1]=color_to_number.colortonumber(Mastermind.color52)
+                Mastermind.verlauf[4][2]=color_to_number.colortonumber(Mastermind.color53)
+                Mastermind.verlauf[4][3]=color_to_number.colortonumber(Mastermind.color54)
                 checkverlaufandresult()
                 Mastermind.spielzug = 6
                 canvas()
@@ -927,10 +929,10 @@ class Mastermind:
             canvas6.create_line(340, 0, 340, 100, width=5)
 
             def row6():
-                Mastermind.verlauf[5][0]=colortonumber(Mastermind.color61)
-                Mastermind.verlauf[5][1]=colortonumber(Mastermind.color62)
-                Mastermind.verlauf[5][2]=colortonumber(Mastermind.color63)
-                Mastermind.verlauf[5][3]=colortonumber(Mastermind.color64)
+                Mastermind.verlauf[5][0]=color_to_number.colortonumber(Mastermind.color61)
+                Mastermind.verlauf[5][1]=color_to_number.colortonumber(Mastermind.color62)
+                Mastermind.verlauf[5][2]=color_to_number.colortonumber(Mastermind.color63)
+                Mastermind.verlauf[5][3]=color_to_number.colortonumber(Mastermind.color64)
                 checkverlaufandresult()
                 Mastermind.spielzug = 7
                 canvas()
@@ -966,10 +968,10 @@ class Mastermind:
             canvas7.create_line(340, 0, 340, 100, width=5)
 
             def row7():
-                Mastermind.verlauf[6][0]=colortonumber(Mastermind.color71)
-                Mastermind.verlauf[6][1]=colortonumber(Mastermind.color72)
-                Mastermind.verlauf[6][2]=colortonumber(Mastermind.color73)
-                Mastermind.verlauf[6][3]=colortonumber(Mastermind.color74)
+                Mastermind.verlauf[6][0]=color_to_number.colortonumber(Mastermind.color71)
+                Mastermind.verlauf[6][1]=color_to_number.colortonumber(Mastermind.color72)
+                Mastermind.verlauf[6][2]=color_to_number.colortonumber(Mastermind.color73)
+                Mastermind.verlauf[6][3]=color_to_number.colortonumber(Mastermind.color74)
                 checkverlaufandresult()
                 Mastermind.spielzug = 8
                 canvas()
@@ -1020,10 +1022,10 @@ class Mastermind:
             ######################################################
                 
                 if(Mastermind.show_go):
-                    Mastermind.result[0]=colortonumber(Mastermind.color91)
-                    Mastermind.result[1]=colortonumber(Mastermind.color92)
-                    Mastermind.result[2]=colortonumber(Mastermind.color93)
-                    Mastermind.result[3]=colortonumber(Mastermind.color94)
+                    Mastermind.result[0]=color_to_number.colortonumber(Mastermind.color91)
+                    Mastermind.result[1]=color_to_number.colortonumber(Mastermind.color92)
+                    Mastermind.result[2]=color_to_number.colortonumber(Mastermind.color93)
+                    Mastermind.result[3]=color_to_number.colortonumber(Mastermind.color94)
                     Mastermind.color91 = Mastermind.color92 = Mastermind.color93 = Mastermind.color94="white"
                     Mastermind.show_go = False
                     Mastermind.spielzug = 1
