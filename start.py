@@ -204,20 +204,25 @@ class Mastermind:
         ##########################################################################################################################################################################################
         
         def windowgame():
-            if(Mastermind.gamemode=="PvP"):
+            if(Mastermind.gamemode=="PvP"): # gamemode Player vs Player
+                # game starts in the last row 
                 Mastermind.spielzug = 9
-            if(Mastermind.gamemode=="PvC"):
+            if(Mastermind.gamemode=="PvC"): # gamemode is Player vs Computer
+                # create random color code
                 code = [0,1,2,3,4,5]
                 random.shuffle(code)
                 Mastermind.result[0]=code[0]
                 Mastermind.result[1]=code[1]
                 Mastermind.result[2]=code[2]
                 Mastermind.result[3]=code[3]
+                # game starts in the first row
                 Mastermind.spielzug=1
             if(Mastermind.gamemode=="CvP"):
+                # game starts in the last row
                 Mastermind.spielzug = 9
 
             
+            # create game window
             self.geometry("650x950+"+str(self.winfo_pointerx()-325)+"+"+str(self.winfo_pointery()-475))
             self.title("Mastermind")
 
@@ -226,6 +231,7 @@ class Mastermind:
             canvas()
             
         def canvas():
+            # set attributes for canvas
             canvaswidth = 455
             canvasheight = 90
             canvaspadx = 10
@@ -234,37 +240,40 @@ class Mastermind:
             canvashbg = "black"
             canvasht = 2
             
-            if(Mastermind.won==True):
+            if(Mastermind.won==True): # if won
+                # show the color code at the bottom
                 Mastermind.color91 = numbertocolor(Mastermind.result[0])
                 Mastermind.color92 = numbertocolor(Mastermind.result[1])
                 Mastermind.color93 = numbertocolor(Mastermind.result[2])
                 Mastermind.color94 = numbertocolor(Mastermind.result[3])
                 Mastermind.spielzug = 100
+                # show won notification popup
                 wonpup()
-            if(Mastermind.notwon==True):
+            if(Mastermind.notwon==True): # if not won
+                # show the color code at the bottom
                 Mastermind.color91 = numbertocolor(Mastermind.result[0])
                 Mastermind.color92 = numbertocolor(Mastermind.result[1])
                 Mastermind.color93 = numbertocolor(Mastermind.result[2])
                 Mastermind.color94 = numbertocolor(Mastermind.result[3])
+                # show not won notification popup
                 notwonpup()
                 
                 
-            
+            # create canvas for the first line
             canvas1 = Canvas(self, width=canvaswidth, height=canvasheight, highlightthickness=canvasht, bg=canvasbg, highlightbackground=canvashbg)
             canvas1.grid(row=1, column=0, padx=canvaspadx, pady=canvaspady)
 
+            # create 4 ovals with white background and black border, where the color will be selected later
             canvas1.create_oval(10, 15, 70, 75, fill=Mastermind.color11 , outline='black', tag="oval11")
             canvas1.tag_bind("oval11", "<Button-1>", lambda x: save_posn(11))
-            
             canvas1.create_oval(90, 15, 150, 75, fill=Mastermind.color12 , outline='black', tag="oval12")
             canvas1.tag_bind("oval12", "<Button-1>", lambda x: save_posn(12))
-
             canvas1.create_oval(170, 15, 230, 75, fill=Mastermind.color13 , outline='black', tag="oval13")
             canvas1.tag_bind("oval13", "<Button-1>", lambda x: save_posn(13))
-
             canvas1.create_oval(250, 15, 310, 75, fill=Mastermind.color14 , outline='black', tag="oval14")
             canvas1.tag_bind("oval14", "<Button-1>", lambda x: save_posn(14))
 
+            # create a vertical line to seperate the two areas of the game
             canvas1.create_line(340, 0, 340, 100, width=5)
             def cvp1():
                 Mastermind.color11="yellow"
@@ -698,22 +707,21 @@ class Mastermind:
                 canvas1.create_oval(410, 50, 440, 80, fill=Mastermind.ccolor14 , outline='black', tag="control14")
 
                 
-    
+            # create canvas for the second line
             canvas2 = Canvas(self, width=canvaswidth, height=canvasheight, highlightthickness=canvasht, bg=canvasbg, highlightbackground=canvashbg)
             canvas2.grid(row=2, column=0, padx=canvaspadx, pady=canvaspady)
 
+            # create 4 ovals with white background and black border, where the color will be selected later
             canvas2.create_oval(10, 15, 70, 75, fill=Mastermind.color21 , outline='black', tag="oval21")
-            canvas2.tag_bind("oval21", "<Button-1>", lambda x: save_posn(21))
-            
+            canvas2.tag_bind("oval21", "<Button-1>", lambda x: save_posn(21))           
             canvas2.create_oval(90, 15, 150, 75, fill=Mastermind.color22 , outline='black', tag="oval22")
             canvas2.tag_bind("oval22", "<Button-1>", lambda x: save_posn(22))
-
             canvas2.create_oval(170, 15, 230, 75, fill=Mastermind.color23 , outline='black', tag="oval23")
             canvas2.tag_bind("oval23", "<Button-1>", lambda x: save_posn(23))
-
             canvas2.create_oval(250, 15, 310, 75, fill=Mastermind.color24 , outline='black', tag="oval24")
             canvas2.tag_bind("oval24", "<Button-1>", lambda x: save_posn(24))
 
+            # create a vertical line to seperate the two areas of the game
             canvas2.create_line(340, 0, 340, 100, width=5)
 
 
@@ -761,21 +769,21 @@ class Mastermind:
                 canvas2.create_oval(410, 50, 440, 80, fill=Mastermind.ccolor24 , outline='black', tag="control24")
             
 
+            # create canvas for the third line
             canvas3 = Canvas(self, width=canvaswidth, height=canvasheight,  highlightthickness=canvasht, bg=canvasbg, highlightbackground=canvashbg)
             canvas3.grid(row=3, column=0, padx=canvaspadx, pady=canvaspady)
 
+            # create 4 ovals with white background and black border, where the color will be selected later
             canvas3.create_oval(10, 15, 70, 75, fill=Mastermind.color31 , outline='black', tag="oval31")
-            canvas3.tag_bind("oval31", "<Button-1>", lambda x: save_posn(31))
-            
+            canvas3.tag_bind("oval31", "<Button-1>", lambda x: save_posn(31))            
             canvas3.create_oval(90, 15, 150, 75, fill=Mastermind.color32 , outline='black', tag="oval32")
             canvas3.tag_bind("oval32", "<Button-1>", lambda x: save_posn(32))
-
             canvas3.create_oval(170, 15, 230, 75, fill=Mastermind.color33 , outline='black', tag="oval33")
             canvas3.tag_bind("oval33", "<Button-1>", lambda x: save_posn(33))
-
             canvas3.create_oval(250, 15, 310, 75, fill=Mastermind.color34 , outline='black', tag="oval34")
             canvas3.tag_bind("oval34", "<Button-1>", lambda x: save_posn(34))
 
+            # create a vertical line to seperate the two areas of the game
             canvas3.create_line(340, 0, 340, 100, width=5)
             
             def row3():
@@ -821,21 +829,21 @@ class Mastermind:
                 canvas3.create_oval(410, 50, 440, 80, fill=Mastermind.ccolor34 , outline='black', tag="control34")
             
 
+            # create canvas for the fourth line
             canvas4 = Canvas(self, width=canvaswidth, height=canvasheight, highlightthickness=canvasht, bg=canvasbg, highlightbackground=canvashbg)
             canvas4.grid(row=4, column=0, padx=canvaspadx, pady=canvaspady)
 
+            # create 4 ovals with white background and black border, where the color will be selected later
             canvas4.create_oval(10, 15, 70, 75, fill=Mastermind.color41 , outline='black', tag="oval41")
-            canvas4.tag_bind("oval41", "<Button-1>", lambda x: save_posn(41))
-            
+            canvas4.tag_bind("oval41", "<Button-1>", lambda x: save_posn(41))         
             canvas4.create_oval(90, 15, 150, 75, fill=Mastermind.color42 , outline='black', tag="oval42")
             canvas4.tag_bind("oval42", "<Button-1>", lambda x: save_posn(42))
-
             canvas4.create_oval(170, 15, 230, 75, fill=Mastermind.color43 , outline='black', tag="oval43")
             canvas4.tag_bind("oval43", "<Button-1>", lambda x: save_posn(43))
-
             canvas4.create_oval(250, 15, 310, 75, fill=Mastermind.color44 , outline='black', tag="oval44")
             canvas4.tag_bind("oval44", "<Button-1>", lambda x: save_posn(44))
 
+            # create a vertical line to seperate the two areas of the game
             canvas4.create_line(340, 0, 340, 100, width=5)
 
             def row4():
@@ -861,21 +869,21 @@ class Mastermind:
                 canvas4.create_oval(410, 50, 440, 80, fill=Mastermind.ccolor44 , outline='black', tag="control44")
             
 
+            # create canvas for the fifth line
             canvas5 = Canvas(self, width=canvaswidth, height=canvasheight, highlightthickness=canvasht, bg=canvasbg, highlightbackground=canvashbg)
             canvas5.grid(row=5, column=0, padx=canvaspadx, pady=canvaspady)
 
+            # create 4 ovals with white background and black border, where the color will be selected later
             canvas5.create_oval(10, 15, 70, 75, fill=Mastermind.color51 , outline='black', tag="oval51")
             canvas5.tag_bind("oval51", "<Button-1>", lambda x: save_posn(51))
-            
             canvas5.create_oval(90, 15, 150, 75, fill=Mastermind.color52 , outline='black', tag="oval52")
             canvas5.tag_bind("oval52", "<Button-1>", lambda x: save_posn(52))
-
             canvas5.create_oval(170, 15, 230, 75, fill=Mastermind.color53 , outline='black', tag="oval53")
             canvas5.tag_bind("oval53", "<Button-1>", lambda x: save_posn(53))
-
             canvas5.create_oval(250, 15, 310, 75, fill=Mastermind.color54 , outline='black', tag="oval54")
             canvas5.tag_bind("oval54", "<Button-1>", lambda x: save_posn(54))
 
+            # create a vertical line to seperate the two areas of the game
             canvas5.create_line(340, 0, 340, 100, width=5)
 
 
@@ -901,21 +909,21 @@ class Mastermind:
                 canvas5.create_oval(410, 50, 440, 80, fill=Mastermind.ccolor54 , outline='black', tag="control54")
             
 
+            # create canvas for the sixth line
             canvas6 = Canvas(self, width=canvaswidth, height=canvasheight, highlightthickness=canvasht, bg=canvasbg, highlightbackground=canvashbg)
             canvas6.grid(row=6, column=0, padx=canvaspadx, pady=canvaspady)
 
+            # create canvas for the fifth line
             canvas6.create_oval(10, 15, 70, 75, fill=Mastermind.color61 , outline='black', tag="oval61")
             canvas6.tag_bind("oval61", "<Button-1>", lambda x: save_posn(61))
-            
             canvas6.create_oval(90, 15, 150, 75, fill=Mastermind.color62 , outline='black', tag="oval62")
             canvas6.tag_bind("oval62", "<Button-1>", lambda x: save_posn(62))
-
             canvas6.create_oval(170, 15, 230, 75, fill=Mastermind.color63 , outline='black', tag="oval63")
             canvas6.tag_bind("oval63", "<Button-1>", lambda x: save_posn(63))
-
             canvas6.create_oval(250, 15, 310, 75, fill=Mastermind.color64 , outline='black', tag="oval64")
             canvas6.tag_bind("oval64", "<Button-1>", lambda x: save_posn(64))
 
+            # create a vertical line to seperate the two areas of the game
             canvas6.create_line(340, 0, 340, 100, width=5)
 
             def row6():
@@ -940,21 +948,21 @@ class Mastermind:
                 canvas6.create_oval(410, 50, 440, 80, fill=Mastermind.ccolor64 , outline='black', tag="control64")
             
 
+            # create canvas for the seventh line
             canvas7 = Canvas(self, width=canvaswidth, height=canvasheight, highlightthickness=canvasht, bg=canvasbg, highlightbackground=canvashbg)
             canvas7.grid(row=7, column=0, padx=canvaspadx, pady=canvaspady)
 
+            # create canvas for the fifth line
             canvas7.create_oval(10, 15, 70, 75, fill=Mastermind.color71 , outline='black', tag="oval71")
             canvas7.tag_bind("oval71", "<Button-1>", lambda x: save_posn(71))
-            
             canvas7.create_oval(90, 15, 150, 75, fill=Mastermind.color72 , outline='black', tag="oval72")
             canvas7.tag_bind("oval72", "<Button-1>", lambda x: save_posn(72))
-
             canvas7.create_oval(170, 15, 230, 75, fill=Mastermind.color73 , outline='black', tag="oval73")
             canvas7.tag_bind("oval73", "<Button-1>", lambda x: save_posn(73))
-
             canvas7.create_oval(250, 15, 310, 75, fill=Mastermind.color74 , outline='black', tag="oval74")
             canvas7.tag_bind("oval74", "<Button-1>", lambda x: save_posn(74))
 
+            # create a vertical line to seperate the two areas of the game
             canvas7.create_line(340, 0, 340, 100, width=5)
 
             def row7():
@@ -977,30 +985,34 @@ class Mastermind:
                 canvas7.create_oval(410, 50, 440, 80, fill=Mastermind.ccolor74 , outline='black', tag="control74")
             
             
+            # create canvas for the eighth line
             canvas8 = Canvas(self, width=canvaswidth, height=canvasheight, highlightthickness=canvasht, bg=canvasbg, highlightbackground=canvashbg)
             canvas8.grid(row=9, column=0, padx=canvaspadx, pady=canvaspady*5)
 
+            # create canvas for the fifth line
             canvas8.create_oval(10, 15, 70, 75, fill=Mastermind.color91 , outline='black', tag="oval91")
             canvas8.tag_bind("oval91", "<Button-1>", lambda x: save_posn(91))
-            
             canvas8.create_oval(90, 15, 150, 75, fill=Mastermind.color92 , outline='black', tag="oval92")
             canvas8.tag_bind("oval92", "<Button-1>", lambda x: save_posn(92))
-
             canvas8.create_oval(170, 15, 230, 75, fill=Mastermind.color93 , outline='black', tag="oval93")
             canvas8.tag_bind("oval93", "<Button-1>", lambda x: save_posn(93))
-
             canvas8.create_oval(250, 15, 310, 75, fill=Mastermind.color94 , outline='black', tag="oval94")
             canvas8.tag_bind("oval94", "<Button-1>", lambda x: save_posn(94))
 
+            # create a vertical line to seperate the two areas of the game
             canvas8.create_line(340, 0, 340, 100, width=5)
 
+            # create list of the currently selected colors
             colors_list = [Mastermind.color91, Mastermind.color92, Mastermind.color93, Mastermind.color94]            
+            # save the currently selected colors in a set
             colors_set = set(colors_list)
-            contains_duplicates = len(colors_list) != len(colors_set)
+            # duplicates is true, if the list and the set of colors have same length
+            duplicates = len(colors_list) != len(colors_set)
 
 
-            if(Mastermind.gamemode=="PvP" or Mastermind.gamemode=="CvP"):
-                if(Mastermind.show_go and (Mastermind.color91!="white" and Mastermind.color92!="white" and Mastermind.color93!="white" and Mastermind.color94!="white") and (contains_duplicates==False)):
+            if(Mastermind.gamemode=="PvP" or Mastermind.gamemode=="CvP"): # if selected gamemode is Player vs Player or Computer vs Player
+                if(Mastermind.show_go and (Mastermind.color91!="white" and Mastermind.color92!="white" and Mastermind.color93!="white" and Mastermind.color94!="white") and (duplicates==False)): # if show_go is, none selected color is white and duplicates is false
+                    # create clickable label "Go" to start the game
                     canvas8.create_text(400, 45,text= "Go", font=("Fixedsys", 17), tag="PvPTag")
                     canvas8.tag_bind("PvPTag", "<Button-1>", lambda x: startpvp())
 
@@ -1008,7 +1020,6 @@ class Mastermind:
             ######################################################
                 
                 if(Mastermind.show_go):
-                    
                     Mastermind.result[0]=colortonumber(Mastermind.color91)
                     Mastermind.result[1]=colortonumber(Mastermind.color92)
                     Mastermind.result[2]=colortonumber(Mastermind.color93)
@@ -1064,49 +1075,59 @@ class Mastermind:
                 color = popup(self.winfo_pointerx(), self.winfo_pointery(),x)
 
                 
-
+        # function to show the won notification popup
         def wonpup():
             if(Mastermind.wonwindow):
                 Mastermind.wonwindow = False
+                # destroy the won popup
                 def backmain():
                     try:
                         changewindow(0)
                     finally:
                         wonpopup.destroy()
 
+                # set up the won popup frame
                 wonpopup = Tk()
                 wonpopup.grid_rowconfigure(1, weight=1)
                 wonpopup.grid_columnconfigure(0, weight=1)
                 wonpopup.title("Glückwunsch") # set frame title
                 wonpopup.iconbitmap('img/icon.ico') # set frame icon
                 wonpopup.geometry("390x300+"+str(self.winfo_pointerx()-190)+"+"+str(self.winfo_pointery()-150))   
+                # create won message
                 title_lb = Label(wonpopup, text = "Glückwunsch, \nSie haben gewonnen!!!", font=("Fixedsys", 17))
                 title_lb.grid(row=0, column=0, padx=10, pady = 5, sticky="nwse")
+                # create button to go back to main menu window
                 back_bt = Button(wonpopup, text = "Back to\nMenu", font=("Fixedsys", 17), width = 15, height=5, bg="lightgreen",command=backmain)
                 back_bt.grid(row = 1, column = 0, pady = 10, sticky='s')
 
-            
+
+        # function to show the not won notification popup            
         def notwonpup():
             if(Mastermind.notwonwindow):
                 Mastermind.notwonwindow = False
+                # destroy the not won popup 
                 def backmain():
                     try:
                         changewindow(0)
                     finally:
                         notwonpopup.destroy()
 
+                # set up the not won popup frame
                 notwonpopup = Tk()
                 notwonpopup.grid_rowconfigure(2, weight=1)
                 notwonpopup.grid_columnconfigure(0, weight=1)
                 notwonpopup.title("Verloren") # set frame title
                 notwonpopup.iconbitmap('img/icon.ico') # set frame icon
                 notwonpopup.geometry("390x300+"+str(self.winfo_pointerx()-190)+"+"+str(self.winfo_pointery()-150))   
-                notwonpopup.title_lb = Label(notwonpopup, text = "Schade, leider \n nicht geschafft!", font=("Fixedsys", 17))
-                notwonpopup.title_lb.grid(row=0, column=0, padx=10, pady = 5, sticky="nwse")
-                notwonpopup.back_bt = Button(notwonpopup, text = "Back to\nMenu", font=("Fixedsys", 17), width = 15, height=5, bg="lightgreen",command=backmain)
-                notwonpopup.back_bt.grid(row = 2, column = 0, pady = 10, sticky='s')
+                # create not won message
+                title_lb = Label(notwonpopup, text = "Schade, leider \n nicht geschafft!", font=("Fixedsys", 17))
+                title_lb.grid(row=0, column=0, padx=10, pady = 5, sticky="nwse")
+                # create button to go back to main menu window
+                back_bt = Button(notwonpopup, text = "Back to\nMenu", font=("Fixedsys", 17), width = 15, height=5, bg="lightgreen",command=backmain)
+                back_bt.grid(row = 2, column = 0, pady = 10, sticky='s')
 
 
+        # function to generate popup for color selection
         def popup(x,y,id):
             if(Mastermind.gamemode!="CvP" or Mastermind.spielzug==9):
                 check = False
@@ -1114,22 +1135,28 @@ class Mastermind:
                 # set weight of rows and columns
                 popup.grid_rowconfigure(8, weight=1)
                 popup.grid_columnconfigure(0, weight=1)
-                popup.title("Mastermind - Start") # set frame title
-                popup.iconbitmap('img/icon.ico') # set frame icon
+                # set up color selection frame
+                popup.title("Mastermind - Start")
+                popup.iconbitmap('img/icon.ico')
                 popup.geometry("50x50+"+str(x)+"+"+str(y-80))
 
+                # function for setting color
                 def setcolor1():
                     setcolor(color_cb.get(),id)
                     popup.destroy()
                     
+                # create combobox withe the available colors
                 color_cb = Combobox(popup, values=['Gelb', 'Blau', 'Grün', 'Braun', 'Lila', 'Orange'], state="readonly")
-                color_cb.current(0)
+                color_cb.current(0) # set default selected color to yellow
                 color_cb.grid(row=0, column=0, padx=5, pady = 5)
+                # create button for changing color
                 confirmcolor_bt = Button(popup, text = "OK", font=("Fixedsys", 14), width = 2, height=1, bg="lightgreen", command= setcolor1)
                 confirmcolor_bt.grid(row = 0, column = 1, pady = 5, sticky='s')
             
         
+        # function for mapping colors
         def setcolor(color,x):
+            # german color names -> english color names
             if(color == "Gelb"):
                 color = "yellow"
             if(color == "Blau"):
@@ -1220,9 +1247,7 @@ class Mastermind:
 
         windowmain()
         
-        
         # show everything
-        
         self.mainloop()
         
         

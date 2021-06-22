@@ -1,3 +1,4 @@
+# function for mapping color strings to color integers
 def colortonumber(color):
     if(color=="yellow"):
         return 0
