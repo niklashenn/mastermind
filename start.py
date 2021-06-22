@@ -9,6 +9,7 @@ import time
 import webbrowser
 from helper import color_to_number
 from helper import number_to_color
+# from helper import set_color
 
 sys.path.insert(0, '/helper/')
 
@@ -154,7 +155,6 @@ class Mastermind:
                 Mastermind.show_go = True
 
                 Mastermind.optioncolor = []
-
 
                 Mastermind.poscolors = []
                 Mastermind.betterposcolors = ["","","",""]
