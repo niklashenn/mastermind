@@ -13,6 +13,7 @@ from helper.number_to_color import numbertocolor
 
 # 0=Gelb 1=Blau 2=Grün 3=Braun 4=Lila 5=Orange
 class Mastermind:
+    # define variables
     windowid=0
 
     wonwindow=True
@@ -61,18 +62,19 @@ class Mastermind:
     colors_list = ["white", "white", "white", "white"]
     
     def __init__(self):
-        # create frame
         
         #####################################################################
-        self = Tk()
+        self = Tk() # create frame
         self.title("Mastermind - Start") # set frame title
         self.iconbitmap('img/icon.ico') # set frame icon
 
 
+        # function for deleting widgets of frame
         def clear_frame():
             for widgets in self.winfo_children():
                 widgets.destroy()
 
+        # function to switch betweeen the main menu window and the game window
         def changewindow(id):
             clear_frame()
             if(id==1):
@@ -96,23 +98,24 @@ class Mastermind:
             self.gamemode_lb = Label(self, text = "Gamemode", width = 20, font=("Fixedsys", 17))
             self.gamemode_lb.grid(row = 1, column = 0, padx=5, sticky='nwse')
 
-            # create radio button for PvC
+            # create radio button for Plaver vs Computer
             var = StringVar()
             player_vs_computer_rb = Radiobutton(self, text="Player vs Computer", padx = 50, variable=var, value="PvC")
             #player_vs_computer_rb.deselect()
             player_vs_computer_rb.grid(row = 2, column = 0, padx=5, sticky='nwse')
 
-            # create radio button for PvP
+            # create radio button for Player vs Player
             player_vs_player_rb = Radiobutton(self, text="Player vs Player", padx = 50, variable=var, value="PvP")
-            #player_vs_player_rb.deselect()
+            #player_vs_player_rb.select()
             player_vs_player_rb.grid(row = 3, column = 0, padx=5, sticky='nwse')
 
-            # create radio button for CvP
+            # create radio button for Computer vs Player
             computer_vs_player_rb = Radiobutton(self, text="Computer vs Player", padx = 50, variable=var, value="CvP")
-            #computer_vs_player_rb.deselect()
+            #computer_vs_player_rb.select()
             computer_vs_player_rb.grid(row = 4, column = 0, padx=5, sticky='nwse')
 
             def getgamemode():
+                # reset all relevant variables
                 Mastermind.color11 = Mastermind.color12 = Mastermind.color13 = Mastermind.color14 = 'white'
                 Mastermind.ccolor11 = Mastermind.ccolor12 = Mastermind.ccolor13 = Mastermind.ccolor14 = 'white'
 
@@ -156,23 +159,18 @@ class Mastermind:
                 Mastermind.betterposcolors = ["","","",""]
     
 
+                # change to the corresponding game window
                 if(Mastermind.gamemode=="PvP" or Mastermind.gamemode=="PvC" or Mastermind.gamemode=="CvP"):
                     changewindow(1)
-                else:
+                else: # show popup if no gamemode is selected
                     messagebox.showinfo("Select gamemode", "Please select a gamemode!")
                 
+            # function to open a url in browser
             def callback(url):
                 webbrowser.open_new_tab(url)
 
 
-            # def motion(event):
-                #x, y = event.x, event.y
-                #print('{}, {}'.format(x, y))
-
-            #self.bind('<Motion>', motion)
-
-
-            # Open info popup 
+            # open popup with information about how to play mastermind
             def game_info():
                 global message_window
                 message_window = Toplevel()
@@ -180,20 +178,22 @@ class Mastermind:
                 message_window.title("How to play")
                 message_window.iconbitmap('img/icon.ico')
 
+                # create labels
                 label_anleitung = Label(message_window, text="Bitte wählen sie jede Farbe nur einmal!")
                 label_anleitung.pack()
-
                 label_anleitung2 = Label(message_window, text="Ausfühtliche Anleitung von Mastermind:")
                 label_anleitung2.pack()
-
                 link_anleitung = Label(message_window, text="Masterind Anleitung", fg="blue", cursor="hand2")
                 link_anleitung.pack()
+                # link the link_anleitung label with a url of a "How to play mastermind" website
                 link_anleitung.bind("<Button-1>", lambda e: callback("https://www.spielregeln-spielanleitungen.de/spiel/mastermind-superhirn/"))
 
+                # create button
                 ok_button = Button(message_window, text="OK", width=10, relief=RAISED, bd=2, command=message_window.destroy)
                 ok_button.pack(pady=10, side=BOTTOM)
 
 
+            # create info button
             info_bt = Button(self, text = "Info", font=("Fixedsys", 14), width = 10, height=5, bg="lightgreen", command=game_info)
             info_bt.grid(row = 5, column = 0, pady = 5)
             
