@@ -7,8 +7,8 @@ import sys
 import random
 import time
 import webbrowser
-from helper.color_to_number import *
-from helper.number_to_color import *
+from helper.color_to_number import colortonumber
+from helper.number_to_color import numbertocolor
 # from helper.set_color import *
 
 # 0=Gelb 1=Blau 2=Grün 3=Braun 4=Lila 5=Orange
@@ -58,6 +58,7 @@ class Mastermind:
 
     poscolors = []
     betterposcolors = ["","","",""]
+    colors_list = ["white", "white", "white", "white"]
     
     def __init__(self):
         # create frame
@@ -993,8 +994,13 @@ class Mastermind:
 
             canvas8.create_line(340, 0, 340, 100, width=5)
 
+            colors_list = [Mastermind.color91, Mastermind.color92, Mastermind.color93, Mastermind.color94]            
+            colors_set = set(colors_list)
+            contains_duplicates = len(colors_list) != len(colors_set)
+
+
             if(Mastermind.gamemode=="PvP" or Mastermind.gamemode=="CvP"):
-                if(Mastermind.show_go):
+                if(Mastermind.show_go and (Mastermind.color91!="white" and Mastermind.color92!="white" and Mastermind.color93!="white" and Mastermind.color94!="white") and (contains_duplicates==False)):
                     canvas8.create_text(400, 45,text= "Go", font=("Fixedsys", 17), tag="PvPTag")
                     canvas8.tag_bind("PvPTag", "<Button-1>", lambda x: startpvp())
 
