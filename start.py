@@ -1,11 +1,9 @@
 # imports
-from os import name
 from tkinter.ttk import * 
 from tkinter import *
 from tkinter import messagebox
 import sys
 import random
-import time
 import webbrowser
 from helper import color_to_number
 from helper import number_to_color
@@ -261,31 +259,7 @@ class Mastermind:
                 Mastermind.color94 = number_to_color.numbertocolor(Mastermind.result[3])
                 # show not won notification popup
                 notwonpup()
-
-            if(Mastermind.won2==True): # if won
-                # show the color code at the bottom
-                Mastermind.color91 = number_to_color.numbertocolor(Mastermind.result[0])
-                Mastermind.color92 = number_to_color.numbertocolor(Mastermind.result[1])
-                Mastermind.color93 = number_to_color.numbertocolor(Mastermind.result[2])
-                Mastermind.color94 = number_to_color.numbertocolor(Mastermind.result[3])
-                Mastermind.spielzug = 100
-                # show won notification popup
-                wonpup2()
-            if(Mastermind.notwon2==True): # if not won
-                # show the color code at the bottom
-                Mastermind.color91 = number_to_color.numbertocolor(Mastermind.result[0])
-                Mastermind.color92 = number_to_color.numbertocolor(Mastermind.result[1])
-                Mastermind.color93 = number_to_color.numbertocolor(Mastermind.result[2])
-                Mastermind.color94 = number_to_color.numbertocolor(Mastermind.result[3])
-                # show not won notification popup
-                notwonpup2()
                 
-
-            #frame_canvas = Frame(root)
-            #frame_canvas.grid(row=1, column=0, sticky='nwse')
-
-            #scrollbar = Scrollbar(frame_canvas, orient="vertical", command=canvas.yview)
-            #scrollbar.grid(column=1, sticky=NS)
 
 
             # create canvas for the first line
