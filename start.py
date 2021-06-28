@@ -195,12 +195,16 @@ class Mastermind:
 
 
             # create info button
-            info_bt = Button(root, text = "Info", font=("Fixedsys", 14), width = 10, height=5, bg="lightgreen", command=game_info)
-            info_bt.grid(row = 5, column = 0, pady = 5)
+            info_bt = Button(root, text = "Info", font=("Fixedsys", 14), width = 8, height=3, bg="cornflower blue", command=game_info)
+            info_bt.grid(row = 7, column = 0, padx=10, pady = 10, sticky='sw')
+
+            # create exit button
+            exit_bt = Button(root, text = "Exit", font=("Fixedsys", 14), width = 8, height=3, bg="red", command=lambda: root.destroy())
+            exit_bt.grid(row = 7, column = 0, padx=10, pady = 10, sticky='se')
             
             # create play button
             play_bt = Button(root, text = "Play", font=("Fixedsys", 14), width = 15, height=5, bg="lightgreen", command=lambda :getgamemode())
-            play_bt.grid(row = 6, column = 0, pady = 5, sticky='s')
+            play_bt.grid(row = 7, column = 0, padx=10, pady = 5, sticky='s')
 
         ##########################################################################################################################################################################################
         
