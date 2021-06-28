@@ -20,6 +20,8 @@ class Mastermind:
 
     wonwindow=True
     notwonwindow = True
+    wonwindow2=True
+    notwonwindow2 = True
 
     color11 = color12 = color13 = color14 = 'white'
     ccolor11 = ccolor12 = ccolor13 = ccolor14 = 'white'
@@ -55,6 +57,8 @@ class Mastermind:
 
     won = False
     notwon = False
+    won2 = False
+    notwon2 = False
 
     optioncolor = []
 
@@ -145,13 +149,12 @@ class Mastermind:
 
                 Mastermind.wonwindow = True
                 Mastermind.notwonwindow = True
-
-                Mastermind.gamemode = var.get()
                 Mastermind.won = False
-                Mastermind.verlauf = [[0 for x in range(4)] for y in range(7)] 
-                
                 Mastermind.notwon = False
 
+                Mastermind.gamemode = var.get()
+                Mastermind.verlauf = [[0 for x in range(4)] for y in range(7)] 
+                
                 Mastermind.show_go = True
 
                 Mastermind.optioncolor = []
@@ -359,7 +362,6 @@ class Mastermind:
                         Mastermind.betterposcolors[3]=Mastermind.poscolors[1]
                 else:
                     if(zaehlerred+zaehlerblack==2):
-                        print(Mastermind.optioncolor)
                         Mastermind.poscolors.append(Mastermind.optioncolor[0])
                         Mastermind.poscolors.append(Mastermind.optioncolor[1])
                         Mastermind.color51=Mastermind.poscolors[0]
@@ -391,7 +393,6 @@ class Mastermind:
                     elif(x=="black"):
                         zaehlerblack = zaehlerblack+1
                 if(len(Mastermind.poscolors)==4):
-                    print(str(zaehlerred)+ "  wddswd  "+ str(zaehlerblack))
                     
                     if(Mastermind.betterposcolors[0]==""):
                         if(zaehlerred==2 and zaehlerblack==0):
@@ -405,7 +406,6 @@ class Mastermind:
                             Mastermind.betterposcolors[1]=Mastermind.poscolors[1]
                             Mastermind.betterposcolors[3]=Mastermind.poscolors[3]
                     else:
-                        print(str(zaehlerred)+ "  swd  "+ str(zaehlerblack))
                         if(zaehlerred==2 and zaehlerblack==0):
                             Mastermind.betterposcolors[1]=Mastermind.poscolors[3]
                             Mastermind.betterposcolors[3]=Mastermind.poscolors[2]
@@ -417,7 +417,6 @@ class Mastermind:
                     Mastermind.color63=Mastermind.betterposcolors[2]
                     Mastermind.color64=Mastermind.betterposcolors[3]
                 else:
-                    print(str(zaehlerred)+ "  "+ str(zaehlerblack))
                     if(zaehlerred+zaehlerblack==0):
                         Mastermind.poscolors.append(Mastermind.poscolors[1])
                         Mastermind.poscolors.append(Mastermind.poscolors[3])
@@ -624,7 +623,7 @@ class Mastermind:
                     if(blackfields==4):
                         Mastermind.won = True
                         Mastermind.gamemode = "PvP"
-                
+
                     redfields = redfields - blackfields
                     erg = ["white","white","white","white"]
                     for i in range(0, redfields):
@@ -705,8 +704,8 @@ class Mastermind:
                         Mastermind.notwon = True
 
 
-                    
-                    
+
+
 
 
             if(Mastermind.spielzug==1):
