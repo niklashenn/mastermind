@@ -20,9 +20,7 @@ class Mastermind:
 
     wonwindow=True
     notwonwindow = True
-    wonwindow2=True
-    notwonwindow2 = True
-
+  
     color11 = color12 = color13 = color14 = 'white'
     ccolor11 = ccolor12 = ccolor13 = ccolor14 = 'white'
 
@@ -57,8 +55,6 @@ class Mastermind:
 
     won = False
     notwon = False
-    won2 = False
-    notwon2 = False
 
     optioncolor = []
 
@@ -265,6 +261,24 @@ class Mastermind:
                 Mastermind.color94 = number_to_color.numbertocolor(Mastermind.result[3])
                 # show not won notification popup
                 notwonpup()
+
+            if(Mastermind.won2==True): # if won
+                # show the color code at the bottom
+                Mastermind.color91 = number_to_color.numbertocolor(Mastermind.result[0])
+                Mastermind.color92 = number_to_color.numbertocolor(Mastermind.result[1])
+                Mastermind.color93 = number_to_color.numbertocolor(Mastermind.result[2])
+                Mastermind.color94 = number_to_color.numbertocolor(Mastermind.result[3])
+                Mastermind.spielzug = 100
+                # show won notification popup
+                wonpup2()
+            if(Mastermind.notwon2==True): # if not won
+                # show the color code at the bottom
+                Mastermind.color91 = number_to_color.numbertocolor(Mastermind.result[0])
+                Mastermind.color92 = number_to_color.numbertocolor(Mastermind.result[1])
+                Mastermind.color93 = number_to_color.numbertocolor(Mastermind.result[2])
+                Mastermind.color94 = number_to_color.numbertocolor(Mastermind.result[3])
+                # show not won notification popup
+                notwonpup2()
                 
 
             #frame_canvas = Frame(root)
@@ -623,7 +637,7 @@ class Mastermind:
                     if(blackfields==4):
                         Mastermind.won = True
                         Mastermind.gamemode = "PvP"
-
+                
                     redfields = redfields - blackfields
                     erg = ["white","white","white","white"]
                     for i in range(0, redfields):
@@ -702,8 +716,6 @@ class Mastermind:
                         Mastermind.gamemode = "PvP"
                     else:
                         Mastermind.notwon = True
-
-
 
 
 
@@ -1078,7 +1090,7 @@ class Mastermind:
                 # create button to go back to main menu window
                 back_bt = Button(wonpopup, text = "Back to\nMenu", font=("Fixedsys", 17), width = 15, height=5, bg="lightgreen",command=backmain)
                 back_bt.grid(row = 1, column = 0, pady = 10, sticky='s')
-
+            
 
         # function to show the not won notification popup            
         def notwonpup():
@@ -1104,6 +1116,7 @@ class Mastermind:
                 # create button to go back to main menu window
                 back_bt = Button(notwonpopup, text = "Back to\nMenu", font=("Fixedsys", 17), width = 15, height=5, bg="lightgreen",command=backmain)
                 back_bt.grid(row = 2, column = 0, pady = 10, sticky='s')
+
 
 
         # function to generate popup for color selection
